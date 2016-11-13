@@ -1,0 +1,86 @@
+<div ng-controller="mylsl_controller">
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div id="mnleft" class="col-xs-2 menu-left">
+
+        <div class="client_logo_container" style="padding: 15% 15% 10% 17%;">
+
+          <img ng-src="{{client_logo_path}}">
+
+        </div>
+
+        <ul class="menu">
+
+
+
+          <a href="#"  ng-repeat="section in sections" id="{{section.sectionId}}" data-ui-sref-active="active" ng-click="navigate(section)">
+
+            <li class="list-item"><i class="glyphicon glyphicon-{{section.icon}}"></i><span>{{section.sectionDesc}}</span></li>
+
+          </a>
+
+          <a ng-hide="noOldSite" ng-click="consultOldSite()">
+
+           <li id="consultOldSite" class="list-item">
+
+             <i class="glyphicon glyphicon-globe"></i><span>Consultar sitio anterior</span>
+
+           </li>
+
+         </a>
+
+         <a ng-click="logout()">
+
+          <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>
+
+        </a>
+
+      </ul>
+
+      <div  style="padding:15% 15% 0% 15%">
+
+        <img class="mylsl_logo" ng-src="./logos/mylsl.jpg">
+
+      </div>
+
+    </div>
+
+    <div id="content" class="col-xs-10 content">
+
+      <!--         <img ng-show="show_add_op" class="lineal_logo" ng-src="./logos/lineal.jpg"> -->
+
+      <div ui-view="content">
+          <img style="max-width: 300px; margin-top: 150px;" src="logos/linealrelieve.png" alt="">
+      </div>
+
+
+
+    </div>
+
+    <div class="footer"><span>Bienvenido/a {{name}} a My LSL, su portal en donde podrá gerenciar sus operaciones de Logística y Comercio Exterior.</span>
+
+      <br>
+
+      <span>Teléfono 54 11 4326-3315 (líneas rotativas). </span></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="progress" style="display:none;">
+
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+
+  Cargando...
+
+</div>
+
+</div>
+

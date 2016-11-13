@@ -1,0 +1,93 @@
+<div class="import" id="cpanel_import" ng-controller="import_controller" ng-show="Content_active">
+  <div class="bcrumb" style="top:2%;">
+    <a href="#" ui-sref="mylsl" ui-sref-opts="{reload: true}">My LSL > </a>  <a  href="#" ui-sref="mylsl.cpanel"  ui-sref-opts="{reload: true}">Administrar operaciones > </a><span class="bcrumb_active">{{client.name_desc | uppercase }}</span>
+  </div>
+  <div class="search">
+    <div class="row form-inline">
+      <button class="btn search_btn" style="margin-right: 3%;" ng-click="enableSearch()"><i ng-class="search_icon" style="font-size:12px;margin-right:4px;"></i>{{search_text}}</button>
+      <span ng-show="search_enable">
+        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
+        <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd-MM-yyyy'}}"/>
+
+
+
+        <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
+        <input type="search" class="form-control search_box inp_op"  ng-model="impo_search_op" placeholder="Escriba aquí la operación a buscar"/>
+
+
+        <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
+        <input type="search" class="form-control search_box inp_doc"  ng-model="impo_search_doc" placeholder="Escriba aquí el documento a buscar"/>
+      </span>
+      <button class="btn  add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Importación</button>
+    </div>
+  </div>
+<div class="operation_state setWhite">
+      <div class="col-xs-6 pull-right">
+        <div class="icon_inprogress"></div>
+        <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
+        <div class="icon_finished"></div>
+        <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span>
+      </div>
+    </div>
+  <div class="table-responsive cp_impo_tb-responsive">    
+    <table class="table cp_impo_tb table-striped table-curved table-condensed table-hover">
+      <thead>
+        <tr class="fixed_title">
+          <th  style="border-radius: 5px 5px 0px 0px;" colspan="16">{{client.name_desc | uppercase }}</th>
+        </tr>
+        <tr>
+          <th>Owner</th>
+          <th>Ref Clientes</th>
+          <th>Nro Op.</th>
+          <th>Mercader&iacute;a</th>
+          <th>SIMI</th>
+          <th>VTO. SIMI</th>
+          <th>Transporte</th>
+          <th class="col-xs-1">embarque origen</th>
+          <th class="col-xs-1">arribo estimado</th>      
+          <th class="col-xs-1">Solicitud de fondos</th>
+          <th class="col-xs-1">Recepci&oacute;n de fondos</th>
+          <th class="col-xs-1">Fecha arribo</th>
+          <th>Documento Aduanero</th>   
+          <th class="col-xs-1">Fecha liberaci&oacute;n</th>
+          <th>Factura LSL</th>
+          <th class="fixed_actions">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr  data-ng-class="import.operation_state == 0 ? 'op_active' : 'op_finished'" ng-repeat="import in  filtered = operations_imp | orderBy: '-operation_number'|filter:{operation_state: state } | filter : paginate | filter : impo_search_date | filter : impo_search_op | filter : impo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+          <td>{{ import.owner}}</td>
+          <td>{{ import.ref_client }}</td>
+          <td>{{ import.operation_number }}</td>
+          <td>{{ import.merchandise }}</td>
+          <td>{{ import.custom_document_djai }}</td>
+          <td>{{ import.expired_simi }}</td>
+          <td>{{ import.transport }}</td>
+          <td class="col-xs-1">{{ import.shipment_origin }}</td>
+          <td class="col-xs-1">{{ import.estimated_arrival }}</td>  
+          <td class="col-xs-1">{{ import.request_funding_date }}</td>
+          <td class="col-xs-1">{{ import.recived_funds_date }}</td>         
+          <td class="col-xs-1">{{ import.arrival_date }}</td>
+          <td>{{ import.custom_document }}</td>        
+          <td class="col-xs-1">{{ import.release_date }}</td>
+          <td>{{ import.lsl_bill }}</td>
+          <td class="fixed_actions actions"><a ng-click="seeMore(import)" style="color:#000;cursor:pointer;text-decoration: none;">Ver M&aacute;s </a><a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyImport(import)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteImport(import)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+      <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Cargando...
+</div>
+</div>
+<div class="progress sending">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Enviando...
+</div>
+</div>

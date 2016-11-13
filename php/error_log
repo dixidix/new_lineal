@@ -1,0 +1,159 @@
+[16-Aug-2016 01:14:50] PHP Notice:  Undefined index:  sections in /home/linealso/public_html/mylsl/php/edit_client.php on line 36
+[16-Aug-2016 01:14:51] PHP Warning:  Invalid argument supplied for foreach() in /home/linealso/public_html/mylsl/php/edit_client.php on line 63
+[16-Aug-2016 01:18:33] PHP Notice:  Undefined index:  sections in /home/linealso/public_html/mylsl/php/edit_client.php on line 36
+[16-Aug-2016 01:18:39] PHP Warning:  Invalid argument supplied for foreach() in /home/linealso/public_html/mylsl/php/edit_client.php on line 63
+[16-Aug-2016 01:53:10] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 36
+[16-Aug-2016 01:53:10] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 38
+[16-Aug-2016 01:53:10] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 39
+[16-Aug-2016 01:53:10] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 40
+[16-Aug-2016 02:03:01] PHP Notice:  Array to string conversion in /home/linealso/public_html/mylsl/php/db.php on line 56
+[16-Aug-2016 02:03:01] PHP Warning:  Invalid argument supplied for foreach() in /home/linealso/public_html/mylsl/php/new_user.php on line 32
+[16-Aug-2016 02:05:16] PHP Notice:  Undefined index:  role in /home/linealso/public_html/mylsl/php/edit_user.php on line 11
+[16-Aug-2016 02:14:53] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/check_ref_client.php on line 7
+[16-Aug-2016 02:39:42] PHP Notice:  Undefined variable: file_name_pdf in /home/linealso/public_html/mylsl/php/new_operation_temp_imp.php on line 57
+[16-Aug-2016 02:39:42] PHP Notice:  Undefined variable: fileSystemname_pdf in /home/linealso/public_html/mylsl/php/new_operation_temp_imp.php on line 57
+[29-Aug-2016 18:20:34] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[29-Aug-2016 18:20:34] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[29-Aug-2016 18:20:34] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[29-Aug-2016 18:20:35] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[29-Aug-2016 18:20:35] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[29-Aug-2016 18:20:35] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[30-Aug-2016 18:23:22] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[02-Sep-2016 12:07:26] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[02-Sep-2016 12:07:26] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[02-Sep-2016 12:07:26] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[14-Sep-2016 20:47:53] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[14-Sep-2016 20:47:53] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[14-Sep-2016 20:47:54] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[20-Sep-2016 19:24:09] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 36
+[20-Sep-2016 19:24:09] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 38
+[20-Sep-2016 19:24:09] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 39
+[20-Sep-2016 19:24:09] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 40
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[21-Sep-2016 14:33:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[21-Sep-2016 14:33:25] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:39:21] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:44:51] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:44:51] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:44:51] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:44:52] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:44:52] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:44:52] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:46:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:48:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:48:24] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:48:24] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[23-Sep-2016 17:48:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[23-Sep-2016 17:48:25] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[23-Sep-2016 17:48:25] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[03-Oct-2016 04:14:18] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[03-Oct-2016 04:14:18] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[03-Oct-2016 04:21:11] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[03-Oct-2016 04:21:30] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_operations.php on line 4
+[03-Oct-2016 04:21:30] PHP Notice:  Undefined index:  op_type in /home/linealso/public_html/mylsl/php/get_operations.php on line 5
+[03-Oct-2016 04:21:38] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_fares.php on line 4
+[03-Oct-2016 04:21:47] PHP Notice:  Undefined index:  id_client in /home/linealso/public_html/mylsl/php/get_operation_type.php on line 4
+[03-Oct-2016 04:23:19] PHP Notice:  Undefined index:  ref_client in /home/linealso/public_html/mylsl/php/check_ref_client.php on line 4
+[03-Oct-2016 04:23:24] PHP Notice:  Undefined index:  ref_lsl in /home/linealso/public_html/mylsl/php/check_ref_lsl.php on line 4
+[03-Oct-2016 04:25:12] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_videos.php on line 4
+[03-Oct-2016 04:25:33] PHP Notice:  Undefined index:  user in /home/linealso/public_html/mylsl/php/check_username.php on line 4
+[03-Oct-2016 04:26:14] PHP Notice:  Undefined index:  client in /home/linealso/public_html/mylsl/php/check_clientname.php on line 4
+[03-Oct-2016 04:26:20] PHP Notice:  Undefined index:  cuit in /home/linealso/public_html/mylsl/php/check_cuit.php on line 4
+[03-Oct-2016 04:26:30] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_downloads.php on line 4
+[03-Oct-2016 04:28:03] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_temp_impo.php on line 4
+[06-Oct-2016 02:10:16] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[06-Oct-2016 02:10:16] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[06-Oct-2016 02:10:16] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[18-Oct-2016 20:19:41] PHP Notice:  Undefined index:  expired_simi in /home/linealso/public_html/mylsl/php/new_operation_export.php on line 13
+[19-Oct-2016 19:37:33] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 36
+[19-Oct-2016 19:37:33] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 38
+[19-Oct-2016 19:37:33] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 39
+[19-Oct-2016 19:37:33] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 40
+[26-Oct-2016 18:28:42] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[26-Oct-2016 18:28:42] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[26-Oct-2016 18:28:42] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[26-Oct-2016 18:28:43] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[26-Oct-2016 18:28:43] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[26-Oct-2016 18:28:43] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:07] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:10] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:13] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[28-Oct-2016 14:29:14] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[08-Nov-2016 19:03:29] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:04:18] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:04:43] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:04:56] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:05:14] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:06:08] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[08-Nov-2016 19:09:20] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[08-Nov-2016 19:09:43] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:10:31] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:12:40] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[08-Nov-2016 19:13:27] PHP Fatal error:  Call to a member function fetch_array() on a non-object in /home/linealso/public_html/mylsl/php/get_operations.php on line 94
+[10-Nov-2016 16:46:57] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 36
+[10-Nov-2016 16:46:57] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 38
+[10-Nov-2016 16:46:57] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 39
+[10-Nov-2016 16:46:57] PHP Notice:  Undefined index:  logo in /home/linealso/public_html/mylsl/php/new_client.php on line 40
+[10-Nov-2016 18:48:35] PHP Notice:  Undefined index:  sections in /home/linealso/public_html/mylsl/php/edit_client.php on line 36
+[10-Nov-2016 18:48:35] PHP Warning:  Invalid argument supplied for foreach() in /home/linealso/public_html/mylsl/php/edit_client.php on line 63
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[10-Nov-2016 19:55:28] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[10-Nov-2016 19:55:39] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[10-Nov-2016 19:55:39] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[10-Nov-2016 19:55:40] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
+[10-Nov-2016 19:55:40] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 4
+[10-Nov-2016 19:55:40] PHP Notice:  Undefined index:  user_id in /home/linealso/public_html/mylsl/php/get_oldsite.php on line 5
+[10-Nov-2016 19:55:40] PHP Notice:  Undefined index:  client_id in /home/linealso/public_html/mylsl/php/get_sections.php on line 4
