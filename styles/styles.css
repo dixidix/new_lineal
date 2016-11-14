@@ -610,23 +610,24 @@ table.table.cp_impo_tb tbody td:last-child{
   padding-bottom: 0px;
 }
 .fixed_actions{
-  position: fixed;
-  right: 51px;
+  position: absolute;
+  right: 8px;
+  border-left:3px solid #cccccc !important;
   width: 102px;
 }
-.fixed_title{
-  position: absolute;
-  width:100%;
-  top: 151px;
-}
 .fixed_title th{
-  position: relative;
-  width: 100%;
+  position: absolute;
+  width:97%;
+  top: 132px;
 }
+
 td.actions{
   background-color:white;
 }
 .table-responsive.cp_impo_tb-responsive{
-  padding-top:60px;
-  width: 90%;
+  padding-top:40px;
+  width: 91.5%;
+}
+.modal-see-more{
+  font-size:14px;
 }

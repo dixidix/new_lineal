@@ -261,7 +261,25 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
     });
 
   };
+  $scope.seeMore = function (seeMoreImport) {
 
+    $rootScope.seeMoreImport = seeMoreImport;
+
+    $modal.open({
+
+      templateUrl: './partials/modal_see_more.html',
+
+      controller: 'modal_see_more_import',
+
+      scope: $scope
+
+    })
+
+    .result.then(function () {
+
+    });
+
+  };
   $scope.deleteImport = function (deleteImport) {
 
     $rootScope.importDelete = deleteImport;
@@ -1761,7 +1779,17 @@ mylsl.controller('modal_add_operation_temp_import', function (uploadService, $sc
   };
 
 });
+mylsl.controller('modal_see_more_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+  'use strict';
+  $scope.loading = false;
 
+  $scope.actionTitle = $rootScope.client.name_desc + " - información adicional";
+
+  $scope.see_more_import = {
+
+  };
+
+});
 mylsl.controller('modal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
 
   'use strict';
