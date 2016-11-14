@@ -628,6 +628,30 @@ td.actions{
   padding-top:40px;
   width: 91.5%;
 }
+@media only screen and (min-device-width : 1400px) {
+  .table-responsive.cp_impo_tb-responsive{
+    padding-top: 2%;
+    width: 93.5%;
+  }
+  .fixed_title th{
+    top: 27%;
+  }
+  .fixed_actions{
+    right: 1%;
+  }
+}
+@media only screen and (min-device-width : 2000px) {
+  .table-responsive.cp_impo_tb-responsive{
+    padding-top: 2%;
+    width: 94.5%;
+  }
+  .fixed_title th{
+    top: 32%;
+  }
+  .fixed_actions{
+    right: 2%;
+  }
+}
 .modal-see-more{
   font-size:14px;
 }
