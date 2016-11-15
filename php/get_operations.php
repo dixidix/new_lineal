@@ -115,6 +115,26 @@ while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"file_name_reqfound":"'   . $rss["document_name"].'",';
     $outp .= '"file_reqfound":"'   . $rss["document_path"].'",';
 }
+
+if(!empty($rs["forced_date"])){
+    $forced_date = date("d-m-Y", strtotime($rs["forced_date"]));
+    if($forced_date != $compare_date){
+        $outp .= '"forced_date":"'   . $forced_date .'",';
+    }else{
+        $forced_date = "";
+        $outp .= '"forced_date":"'   . $forced_date .'",';
+    }
+}else{
+    $forced_date = "";
+    $outp .= '"forced_date":"'   . $forced_date .'",';
+}
+$outp .= '"fob_simi":"'   . $rs["fob_simi"].'",';
+$outp .= '"fob_simi_currency":"'   . $rs["fob_simi_currency"].'",';
+$outp .= '"fob_despacho":"'   . $rs["fob_despacho"].'",';
+$outp .= '"fob_despacho_currency":"'   . $rs["fob_despacho_currency"].'",';
+$outp .= '"condition":"'   . $rs["condition"].'",';
+$outp .= '"agency_amount":"'   . $rs["agency_amount"].'",';
+
 $outp .= '"lsl_bill":"'. $rs["lsl_bill"].'"}';
 }
 $outp ='{"operations":['.$outp.']}';

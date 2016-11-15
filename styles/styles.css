@@ -655,3 +655,18 @@ td.actions{
 .modal-see-more{
   font-size:14px;
 }
+.select-group{
+  width:100%;
+}
+.select-group > select.form-control{
+  width:35%;
+}
+.select-group > input[type="text"].form-control{
+  width:65%;
+}
+.condition_success{
+  color:green;
+}
+.condition_error {
+  color:red;
+}

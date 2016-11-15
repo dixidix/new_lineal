@@ -1,51 +1,51 @@
-<div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
-</div>
-<div class="modal-body">
-  <form name="see_more_import" class="form-inline modal-see-more" role="form">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label><strong>FOB SIMI: </strong></label>
-          <span>U$D 999,999.00.-</span>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+  </div>
+  <div class="modal-body">
+    <form name="see_more_import" class="form-inline modal-see-more" role="form">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>FOB SIMI: </strong></label>
+            <span ng-if="seeMore.fob_simi_currency !== 'No Info.'">{{  seeMore.fob_simi_currency }}</span> <span ng-if="seeMore.fob_simi !== 'No Info.'">{{ seeMore.fob_simi }}.-</span><span ng-if="seeMore.fob_simi === 'No Info.'">{{ seeMore.fob_simi }} </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label><strong>Condici&oacute;n: </strong></label>
-          <span>Buena <i style="color: green;" class="glyphicon glyphicon-ok"></i></span>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Condici&oacute;n: </strong></label>
+            <span>{{seeMore.condition}} <i ng-if="seeMore.condition !== 'No Info.'" class="glyphicon" ng-class="seeMore.condition == 'Buena' ? 'glyphicon-ok condition_success' : 'glyphicon-remove condition_error'"></i></span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label><strong>Monto agencia: </strong></label>
-          <span>$ 999,999.00.-</span>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Monto agencia: </strong></label>
+            <span ng-if="seeMore.agency_amount !== 'No Info.'">$ {{seeMore.agency_amount}}.-</span><span ng-if="seeMore.agency_amount === 'No Info.'">{{ seeMore.agency_amount }} </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-        <label><strong>FOB Despacho: </strong></label>
-          <span>€ 999,999.00.-</span>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>FOB Despacho: </strong></label>
+            <span ng-if="seeMore.fob_simi_currency !== 'No Info.'">{{ seeMore.fob_despacho_currency }}</span><span ng-if="seeMore.fob_despacho !== 'No Info.'"> {{ seeMore.fob_despacho }}.-</span><span ng-if="seeMore.fob_despacho === 'No Info.'">{{ seeMore.fob_despacho }} </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label><strong>Forzoso: </strong></label>
-          <span>14/11/2016 <i class="glyphicon glyphicon-calendar"></i></span>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Forzoso: </strong></label>
+            <span>{{seeMore.forced_date}} <i ng-if="seeMore.forced_date !== 'No Info.'" class="glyphicon glyphicon-calendar"></i></span>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button class="btn search_btn" ng-click="$dismiss()">Cerrar</button>
-</div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn search_btn" ng-click="$dismiss()">Cerrar</button>
+  </div>

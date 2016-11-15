@@ -524,6 +524,24 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
 
     transport: "",
 
+    fob_simi_currency: "",
+
+    fob_simi: "",
+
+    condition: "",
+
+    agency_amount: "",
+
+    fob_despacho_currency: "",
+
+    fob_despacho: "",
+
+    forced_day: "",
+
+    forced_month: "",
+
+    forced_year: "",
+
     shipment_origin_day: "",
 
     shipment_origin_month: "",
@@ -838,11 +856,6 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
 
   $scope.create_import = function () {
 
-    // $scope.loading = true;
-
-    // $('.modal').css("overflow-y", "hidden");   
-
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
 
     $('.import').hide();
 
@@ -864,11 +877,19 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
 
     $scope.operation_import.expired_simi = $scope.operation_import.expired_simi_year + "-" + $scope.operation_import.expired_simi_month + "-" + $scope.operation_import.expired_simi_day;
 
+    $scope.operation_import.forced_date = $scope.operation_import.forced_year + "-" + $scope.operation_import.forced_month + "-" + $scope.operation_import.forced_day;
+
     $scope.operation_import.client_id = $rootScope.cp_client;
 
     $scope.operation_import.op_type = $rootScope.cp_operation;
 
     $scope.operation_import.select_owner = $('#select_owner').val();
+
+    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val();
+
+    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val();
+
+    $scope.operation_import.condition = $('#select_condition').val();
 
     $scope.operation_import.timeStamp = (new Date).getTime();
 
@@ -1785,8 +1806,14 @@ mylsl.controller('modal_see_more_import', function (uploadService, $scope, $stat
 
   $scope.actionTitle = $rootScope.client.name_desc + " - información adicional";
 
-  $scope.see_more_import = {
-
+  $scope.seeMore = {
+    fob_simi: $rootScope.seeMoreImport.fob_simi || "No Info.",
+    fob_simi_currency: $rootScope.seeMoreImport.fob_simi_currency || "No Info.",
+    fob_despacho: $rootScope.seeMoreImport.fob_despacho || "No Info.",
+    fob_despacho_currency: $rootScope.seeMoreImport.fob_despacho_currency || "No Info.",
+    condition: $rootScope.seeMoreImport.condition || "No Info.",
+    agency_amount: $rootScope.seeMoreImport.agency_amount || "No Info.",
+    forced_date: $rootScope.seeMoreImport.forced_date || "No Info."
   };
 
 });
@@ -1815,7 +1842,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
     var request_funding = $rootScope.importEdit.request_funding_date.split("-");
 
   } else {
-    
+
     request_funding[0] = "";
 
     request_funding[1] = "";
@@ -1848,6 +1875,20 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
     expired_simi[1] = "";
 
     expired_simi[2] = "";
+
+  }
+
+  if($rootScope.importEdit.forced_date != undefined && $rootScope.importEdit.forced_date != null){
+
+    var forced_date = $rootScope.importEdit.forced_date.split("-");
+
+  } else {
+
+    forced_date[0] = "";
+
+    forced_date[1] = "";
+
+    forced_date[2] = "";
 
   }
   $scope.loadOwner = true;
@@ -1922,6 +1963,20 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
 
     expired_simi_year: parseInt(expired_simi[2]),
 
+
+    forced_day:  parseInt(forced_date[0]),
+
+    forced_month: parseInt(forced_date[1]),
+
+    forced_year: parseInt(forced_date[2]),
+
+    fob_simi: $rootScope.importEdit.fob_simi,    
+
+    fob_despacho: $rootScope.importEdit.fob_despacho,   
+
+    agency_amount: $rootScope.importEdit.agency_amount,
+
+
     op_state: $rootScope.importEdit.operation_state,
 
     imp_pdf: $rootScope.importEdit.file_pdf,
@@ -1949,6 +2004,14 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
   var ref_client = $scope.operation_import.ref_client;
 
   $scope.select_owner = $rootScope.importEdit.ownerId;
+
+  console.log($rootScope.importEdit);
+
+  $scope.fob_despacho_currency = $rootScope.importEdit.fob_despacho_currency;
+
+  $scope.fob_simi_currency = $rootScope.importEdit.fob_simi_currency;
+
+  $scope.condition = $rootScope.importEdit.condition;
 
   $scope.get_filename = function () {
 
@@ -2194,6 +2257,9 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
 
     $scope.operation_import.expired_simi = $scope.operation_import.expired_simi_year + "-" + $scope.operation_import.expired_simi_month + "-" + $scope.operation_import.expired_simi_day;
 
+    $scope.operation_import.forced_date = $scope.operation_import.forced_year + "-" + $scope.operation_import.forced_month + "-" + $scope.operation_import.forced_day;
+
+
     $scope.operation_import.client_id = $rootScope.cp_client;
 
     $scope.operation_import.op_type = $rootScope.cp_operation;
@@ -2201,6 +2267,12 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
     $scope.operation_import.op_state = $('#select_op_state').val();
 
     $scope.operation_import.select_owner = $('#select_owner').val();
+
+    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val();
+
+    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val();
+
+    $scope.operation_import.condition = $('#select_condition').val();
 
     $scope.operation_import.timeStamp = (new Date).getTime();
 
@@ -3891,6 +3963,20 @@ mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
 
     formData.append("timeStamp", OpImport.timeStamp);
 
+    formData.append("fob_simi", OpImport.fob_simi);
+
+    formData.append("fob_simi_currency", OpImport.fob_simi_currency);
+
+    formData.append("fob_despacho", OpImport.fob_despacho);
+
+    formData.append("fob_despacho_currency", OpImport.fob_despacho_currency);
+
+    formData.append("condition", OpImport.condition);
+
+    formData.append("forced_date", OpImport.forced_date);
+
+    formData.append("agency_amount", OpImport.agency_amount);
+
     return $http.post("./php/new_operation_import.php", formData, {
 
       transformRequest: angular.identity,
@@ -3966,6 +4052,20 @@ mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
     formData.append("owner", parseInt(OpImport.select_owner));
 
     formData.append("timeStamp", OpImport.timeStamp);
+
+    formData.append("fob_simi", OpImport.fob_simi);
+
+    formData.append("fob_simi_currency", OpImport.fob_simi_currency);
+
+    formData.append("fob_despacho", OpImport.fob_despacho);
+
+    formData.append("fob_despacho_currency", OpImport.fob_despacho_currency);
+
+    formData.append("condition", OpImport.condition);
+
+    formData.append("forced_date", OpImport.forced_date);
+
+    formData.append("agency_amount", OpImport.agency_amount);
 
     return $http.post('./php/edit_operation_import.php', formData, {
 
