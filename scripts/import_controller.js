@@ -1,7 +1,9 @@
-mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $http, filterFilter) {
+mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $http, filterFilter, $modal) {
   'use strict';
   $('.import').hide();
   $('.sending').hide();
+
+
   $scope.downloadDoc = function(file, docs){
     if(file == 'pdf'){
       $('a#'+file).attr({target: '_self', href: docs.file_pdf ,download: docs.file_name_pdf });
@@ -16,7 +18,24 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
       $('a#'+file).attr({target: '_self', href: docs.file_reqfound ,download: docs.file_name_reqfound });
     } 
   };
+  $scope.seeMoreInfo = function(impo){
+    console.log(impo);
+    $rootScope.seeMoreImport = impo;
 
+    $modal.open({
+
+      templateUrl: './partials/modal_see_more.html',
+
+      controller: 'modal_see_more_client_import',
+
+      scope: $scope
+
+    })
+
+    .result.then(function () {
+
+    });
+  }
   $scope.op_type = "2";
   $scope.search_text = "Buscar por...";
   $scope.search_enable = false;
@@ -101,4 +120,21 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
    $('.inp_op').removeClass("show_input");
    $('.search_op').removeClass("search_btn_show_inp");
  });
+});
+mylsl.controller('modal_see_more_client_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+  'use strict';
+  $scope.loading = false;
+
+  $scope.actionTitle = "información adicional";
+
+  $scope.seeMore = {
+    fob_simi: $rootScope.seeMoreImport.fob_simi || "No Info.",
+    fob_simi_currency: $rootScope.seeMoreImport.fob_simi_currency || "No Info.",
+    fob_despacho: $rootScope.seeMoreImport.fob_despacho || "No Info.",
+    fob_despacho_currency: $rootScope.seeMoreImport.fob_despacho_currency || "No Info.",
+    condition: $rootScope.seeMoreImport.condition || "No Info.",
+    agency_amount: $rootScope.seeMoreImport.agency_amount || "No Info.",
+    forced_date: $rootScope.seeMoreImport.forced_date || "No Info."
+  };
+$scope.client_hide = true;
 });

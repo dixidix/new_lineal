@@ -12,11 +12,11 @@ if(empty($errors)){
 	$request_funding = date("Y-m-d", strtotime($_POST['request_funding']));
 	$recived_funds = date("Y-m-d", strtotime($_POST['recived_funds']));
 	$expired_simi = date("Y-m-d", strtotime($_POST['expired_simi']));
-
-	if($_POST['forced_date'] == "1970-01-01"){
+echo $_POST['forced_date'];
+	if($_POST['forced_date'] !== "null-null-null"){
 		$forced_date = date("Y-m-d", strtotime($_POST['forced_date']));
 	} else {
-		$forced_date = NULL;
+		$forced_date = "1970-01-01";
 	}
 
 $ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_cliente']));

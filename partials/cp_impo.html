@@ -56,7 +56,7 @@
       </thead>
 
       <tbody>
-        <tr  data-ng-class="import.operation_state == 0 ? 'op_active' : 'op_finished'" ng-repeat="import in  filtered = operations_imp | orderBy: '-operation_number'|filter:{operation_state: state } | filter : paginate | filter : impo_search_date | filter : impo_search_op | filter : impo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+        <tr  data-ng-class="import.operation_state == 0 ? 'op_active' : 'op_finished'" ng-repeat="import in  filtered = operations_imp | orderBy: '-operation_number' |filter:{operation_state: state } | filter : paginate | filter : impo_search_date | filter : impo_search_op | filter : impo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
           <td>{{ import.owner}}</td>
           <td>{{ import.ref_client }}</td>
           <td>{{ import.operation_number }}</td>

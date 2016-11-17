@@ -4,7 +4,7 @@ session_start();
 $client_id = $_GET['client_id'];
 $optype = $_GET['op_type'];
 $compare_date = date("d-m-Y", strtotime('1970-01-01'));
-$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='". $client_id ."' and operationTypeId='". $optype ."' and deleted=0");
+$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='". $client_id ."' and operationTypeId='". $optype ."' and deleted=0 ORDER BY operation_number DESC");
 $outp="";
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
@@ -15,7 +15,7 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $release_date = date("d-m-Y", strtotime($rs["release_date"]));
     $outp .= '{"ref_lsl":"'  . $rs["ref_lsl"].'",';
     $outp .= '"ref_client":"'   . $rs["ref_client"] .'",';
-    $outp .= '"operation_number":"'   . $rs["operation_number"] .'",';
+    $outp .= '"operation_number":'   . (int)$rs["operation_number"] .',';
     $outp .= '"client_id":"'   . $client_id .'",';
     $outp .= '"merchandise":"'   . $rs["merchandise"].'",';
     $outp .= '"transport":"'   . $rs["transport"].'",';

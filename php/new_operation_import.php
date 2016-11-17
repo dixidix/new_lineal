@@ -39,7 +39,11 @@
 		$recived_funds = date("Y-m-d", strtotime($_POST['recived_funds']));
 		$expired_simi = date("Y-m-d", strtotime($_POST['expired_simi']));
 
-		$forced_date = date("Y-m-d", strtotime($_POST['forced_date']));
+		if($_POST['forced_date'] == "null-null-null"){
+			$forced_date = date("Y-m-d", strtotime($_POST['forced_date']));
+		} else {
+			$forced_date = "";
+		}
 
 		$ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_cliente']));
 		$operation_number = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['operation_number']));
@@ -52,12 +56,12 @@
 		$op_type = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['op_type']));
 		$owner = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['owner']));
 
-		$fob_simi = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi']));
-		$fob_simi_currency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi_currency']));
-		$fob_despacho = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho']));
-		$fob_despacho_currency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho_currency']));
-		$condition = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['condition']));
-		$agency_amount = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency_amount']));
+		$fob_simi = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi'])) : NULL;
+		$fob_simi_currency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi_currency'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_simi_currency'])) : NULL;
+		$fob_despacho = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho'])) : NULL;
+		$fob_despacho_currency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho_currency'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_despacho_currency'])) : '';
+		$condition = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['condition'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['condition'])) : NULL;
+		$agency_amount = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency_amount'])) ? MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency_amount'])) : NULL;
 
 		if(!empty($_FILES['file_imp_pdf'])){
 			$file_name_pdf = $_FILES['file_imp_pdf']['name'];

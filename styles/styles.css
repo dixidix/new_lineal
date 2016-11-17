@@ -202,6 +202,26 @@ th  {
   border-left:  1px solid #ccc;
   border-top:  1px solid #ccc;
 }
+.cp_impo_tb td,.cp_impo_tb th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*.impo_tb td, th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.expo_tb td, th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}*/
+.cp_expo_tb td,.cp_expo_tb th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .table-curved td a {
   color: #2e2e2e;
   cursor: pointer;
@@ -669,4 +689,7 @@ td.actions{
 }
 .condition_error {
   color:red;
+}
+.tooltip{
+  z-index: 9999999999;
 }

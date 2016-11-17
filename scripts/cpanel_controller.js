@@ -885,11 +885,13 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
 
     $scope.operation_import.select_owner = $('#select_owner').val();
 
-    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val();
+    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val() || "";
 
-    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val();
+    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val() || "";
 
-    $scope.operation_import.condition = $('#select_condition').val();
+    $scope.operation_import.condition = $('#select_condition').val() || "";
+
+    console.log($scope.operation_import);
 
     $scope.operation_import.timeStamp = (new Date).getTime();
 
@@ -1815,7 +1817,7 @@ mylsl.controller('modal_see_more_import', function (uploadService, $scope, $stat
     agency_amount: $rootScope.seeMoreImport.agency_amount || "No Info.",
     forced_date: $rootScope.seeMoreImport.forced_date || "No Info."
   };
-
+$scope.client_hide = false;
 });
 mylsl.controller('modal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
 
@@ -2268,11 +2270,13 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
 
     $scope.operation_import.select_owner = $('#select_owner').val();
 
-    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val();
+    $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val() || "";
 
-    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val();
+    $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val() || "";
 
-    $scope.operation_import.condition = $('#select_condition').val();
+    $scope.operation_import.condition = $('#select_condition').val() || "";
+
+    console.log($scope.operation_import);
 
     $scope.operation_import.timeStamp = (new Date).getTime();
 
