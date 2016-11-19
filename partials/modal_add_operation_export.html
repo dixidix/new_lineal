@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-        <span>N&uacute;mero de operaci&oacute;n: </span>
+          <span>N&uacute;mero de operaci&oacute;n: </span>
           <input id="exp_operation_number" type="text" class="form-control"  ng-model="operation_export.operation_number" placeholder="Ingrese el número de operación" required/>
         </div>
       </div>
@@ -51,19 +51,27 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>Documento Aduanero: </span>
-          <input type="text"  class="form-control" ng-model="operation_export.custom_document" placeholder="Ingrese la descripción del doc. aduanero" />
+          <span>Transporte: </span>
+          <input  id="transport" type="text" class="form-control" ng-model="operation_export.transport" placeholder="Ingrese el transporte"/>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>Embarque: </span>
+          <span>Agencia de carga: </span>
+          <input  id="agency" type="text" class="form-control" ng-model="operation_export.agency" placeholder="Ingrese la agencia de carga "/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+        <span>Ingreso a dep&oacute;sito: </span>
           <div class="input-group">
-            <input class="date_day form-control" ng-model="operation_export.shipment_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-            <input class="date_month form-control" ng-model="operation_export.shipment_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-            <input class="date_year form-control" ng-model="operation_export.shipment_year" type="number" id="date_year" min="1970" placeholder="año">
+            <input class="date_day form-control" ng-model="operation_export.deposit_enter_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input class="date_month form-control" ng-model="operation_export.deposit_enter_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input class="date_year form-control" ng-model="operation_export.deposit_enter_year" type="number" id="date_year" min="1970" placeholder="año">
           </div>
         </div>
       </div>
@@ -95,8 +103,40 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
+          <span>Canal: </span>
+          <input  id="channel" type="text" class="form-control" ng-model="operation_export.channel" placeholder="Ingrese el canal"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Documento Aduanero: </span>
+          <input type="text"  class="form-control" ng-model="operation_export.custom_document" placeholder="Ingrese la descripción del doc. aduanero" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>FOB Permiso: </span>
+          <input  id="channel" type="text" class="form-control" ng-model="operation_export.fob_rights" placeholder="Ingrese FOB Permiso"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Cut Off: </span>
+          <input  id="channel" type="text" class="form-control" ng-model="operation_export.cut_off" placeholder="Ingrese cut off"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
           <span>Factura LSL: </span>
-          <input  id="exp_ref_lsl" type="text" class="form-control" ng-blur="check_ref_lsl()" ng-model="operation_export.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
+          <input  id="exp_ref_lsl" type="text" class="form-control" ng-model="operation_export.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
           <p class="validate_error">{{validate_ref_lsl}}</p>
         </div>
       </div>
