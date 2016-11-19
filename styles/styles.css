@@ -648,8 +648,16 @@ td.actions{
   padding-top:40px;
   width: 91.5%;
 }
+.table-responsive.cp_expo_tb-responsive{
+  padding-top:34px;
+  width: 91.5%;
+}
 @media only screen and (min-device-width : 1400px) {
   .table-responsive.cp_impo_tb-responsive{
+    padding-top: 2%;
+    width: 93.5%;
+  }
+    .table-responsive.cp_expo_tb-responsive{
     padding-top: 2%;
     width: 93.5%;
   }
@@ -662,6 +670,10 @@ td.actions{
 }
 @media only screen and (min-device-width : 2000px) {
   .table-responsive.cp_impo_tb-responsive{
+    padding-top: 2%;
+    width: 94.5%;
+  }
+    .table-responsive.cp_expo_tb-responsive{
     padding-top: 2%;
     width: 94.5%;
   }
