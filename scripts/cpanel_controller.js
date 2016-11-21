@@ -969,8 +969,23 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
 
     exp_reqfound: "",
 
-    select_owner: ""
+    select_owner: "",
 
+    transport_expo: "",
+
+    agency: "",
+
+    deposit_enter_day: "",
+
+    deposit_enter_month: "",
+
+    deposit_enter_year: "",
+
+    channel: "",
+
+    fob_rights: "",
+
+    cut_off: ""
   };
 
   $scope.generateId = function(){
@@ -1227,12 +1242,6 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
 
   $scope.create_export = function () {
 
-    // $scope.loading = true; 
-
-    // $('.modal').css("overflow-y", "hidden");   
-
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
-
     $('.export').hide();
 
     $('.sending').fadeIn();
@@ -1244,6 +1253,8 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
     $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
 
     $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
+
+    $scope.operation_export.deposit_enter = $scope.operation_export.deposit_enter_year + "-" + $scope.operation_export.deposit_enter_month + "-" + $scope.operation_export.deposit_enter_day;
 
     $scope.operation_export.client_id = $rootScope.cp_client;
 
@@ -1817,7 +1828,7 @@ mylsl.controller('modal_see_more_import', function (uploadService, $scope, $stat
     agency_amount: $rootScope.seeMoreImport.agency_amount || "No Info.",
     forced_date: $rootScope.seeMoreImport.forced_date || "No Info."
   };
-$scope.client_hide = false;
+  $scope.client_hide = false;
 });
 mylsl.controller('modal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
 
@@ -2359,6 +2370,20 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
 
   }
 
+  if($rootScope.exportEdit.deposit_enter != undefined && $rootScope.exportEdit.deposit_enter != null){
+
+    var deposit_enter = $rootScope.exportEdit.deposit_enter.split("-");
+
+  } else {
+
+    deposit_enter[0] = "";
+
+    deposit_enter[1] = "";
+
+    deposit_enter[2] = "";
+
+  }
+
   $scope.operation_export = {
 
     ref_lsl: $rootScope.exportEdit.ref_lsl,
@@ -2393,17 +2418,41 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
 
     recived_funds_year: parseInt(recived_funds[2]),
 
-    exp_pdf: "",
+    exp_pdf: $rootScope.exportEdit.file_pdf,
 
-    exp_fcl: "",
+    exp_name_pdf: $rootScope.exportEdit.file_name_pdf,
 
-    exp_simi: "",
+    exp_fcl:$rootScope.exportEdit.file_fcl,
 
-    exp_reqfound: "",
+    exp_name_fcl:$rootScope.exportEdit.file_name_fcl,
+
+    exp_simi: $rootScope.exportEdit.file_simi,
+
+    exp_name_simi: $rootScope.exportEdit.file_name_simi,
+
+    exp_reqfound:$rootScope.exportEdit.file_reqfound,
+
+    exp_name_reqfound:$rootScope.exportEdit.file_name_reqfound,
 
     lsl_bill: $rootScope.exportEdit.lsl_bill,
 
-    op_state: $rootScope.exportEdit.operation_state
+    op_state: $rootScope.exportEdit.operation_state,
+
+    transport_expo: $rootScope.exportEdit.transport_expo,
+
+    agency: $rootScope.exportEdit.agency,
+
+    deposit_enter_day: parseInt(deposit_enter[0]),
+
+    deposit_enter_month: parseInt(deposit_enter[1]),
+
+    deposit_enter_year: parseInt(deposit_enter[2]),
+
+    channel: $rootScope.exportEdit.channel,
+
+    fob_rights: $rootScope.exportEdit.fob_rights,
+
+    cut_off: $rootScope.exportEdit.cut_off
 
   };
 
@@ -2631,12 +2680,6 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
 
   $scope.create_export = function () {
 
-    // $scope.loading = true;
-
-    // $('.modal').css("overflow-y", "hidden");   
-
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
-
     $('.export').hide();
 
     $('.sending').fadeIn();
@@ -2648,6 +2691,9 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
     $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
 
     $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
+
+    $scope.operation_export.deposit_enter = $scope.operation_export.deposit_enter_year + "-" + $scope.operation_export.deposit_enter_month + "-" + $scope.operation_export.deposit_enter_day;
+
     $scope.operation_export.client_id = $rootScope.cp_client;
 
     $scope.operation_export.op_type = $rootScope.cp_operation;
@@ -3670,6 +3716,18 @@ mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
 
     formData.append("recived_funds", OpExport.recived_funds);
 
+    formData.append("transport_expo", OpExport.transport_expo);
+
+    formData.append("agency", OpExport.agency);
+
+    formData.append("deposit_enter", OpExport.deposit_enter);
+
+    formData.append("channel", OpExport.channel);
+
+    formData.append("fob_rights", OpExport.fob_rights);
+
+    formData.append("cut_off", OpExport.cut_off);
+
     return $http.post("./php/new_operation_export.php", formData, {
 
       transformRequest: angular.identity,
@@ -3734,6 +3792,17 @@ mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
 
     formData.append("recived_funds", OpExport.recived_funds);
 
+    formData.append("transport_expo", OpExport.transport_expo);
+
+    formData.append("agency", OpExport.agency);
+
+    formData.append("deposit_enter", OpExport.deposit_enter);
+
+    formData.append("channel", OpExport.channel);
+
+    formData.append("fob_rights", OpExport.fob_rights);
+    
+    formData.append("cut_off", OpExport.cut_off); 
 
     return $http.post('./php/edit_operation_export.php', formData, {
 

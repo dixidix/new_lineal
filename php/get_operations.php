@@ -128,12 +128,32 @@ if(!empty($rs["forced_date"])){
     $forced_date = "";
     $outp .= '"forced_date":"'   . $forced_date .'",';
 }
+
+if(!empty($rs["deposit_enter"])){
+    $deposit_enter = date("d-m-Y", strtotime($rs["deposit_enter"]));
+    if($deposit_enter != $compare_date){
+        $outp .= '"deposit_enter":"'   . $deposit_enter .'",';
+    }else{
+        $deposit_enter = "";
+        $outp .= '"deposit_enter":"'   . $deposit_enter .'",';
+    }
+}else{
+    $deposit_enter = "";
+    $outp .= '"deposit_enter":"'   . $deposit_enter .'",';
+}
+
 $outp .= '"fob_simi":"'   . $rs["fob_simi"].'",';
 $outp .= '"fob_simi_currency":"'   . $rs["fob_simi_currency"].'",';
 $outp .= '"fob_despacho":"'   . $rs["fob_despacho"].'",';
 $outp .= '"fob_despacho_currency":"'   . $rs["fob_despacho_currency"].'",';
 $outp .= '"condition":"'   . $rs["condition"].'",';
 $outp .= '"agency_amount":"'   . $rs["agency_amount"].'",';
+
+$outp .= '"transport_expo":"'   . $rs["transport_expo"].'",';
+$outp .= '"agency":"'   . $rs["agency"].'",';
+$outp .= '"channel":"'   . $rs["channel"].'",';
+$outp .= '"fob_rights":"'   . $rs["fob_rights"].'",';
+$outp .= '"cut_off":"'   . $rs["cut_off"].'",';
 
 $outp .= '"lsl_bill":"'. $rs["lsl_bill"].'"}';
 }

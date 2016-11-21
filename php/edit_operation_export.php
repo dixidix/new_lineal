@@ -9,8 +9,9 @@ if (empty($errors)){
 	$shipment = date("Y-m-d", strtotime($_POST['shipment']));
 	$request_funding = date("Y-m-d", strtotime($_POST['request_funding']));
 	$recived_funds = date("Y-m-d", strtotime($_POST['recived_funds']));
-	$ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_client']));
-	
+	$deposit_enter = date("Y-m-d", strtotime($_POST['deposit_enter']));
+
+	$ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_client']));	
 	$operation_number = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['operation_number']));
 	$merchandise = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['merchandise']));
 	$custom_doc = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['custom_document']));
@@ -21,6 +22,13 @@ if (empty($errors)){
 	$op_type = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['op_type']));
 	$op_state = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['operation_state']));
 	$owner = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['owner']));
+
+	$transport_expo = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['transport_expo']));
+	$channel = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['channel']));
+	$fob_rights = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_rights']));
+	$agency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency']));
+	$cut_off = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['cut_off']));
+
 	if(!empty($_FILES['file_exp_pdf'])){
 		$file_name_pdf = $_FILES['file_exp_pdf']['name'];
 		$file_name_pdf = str_replace(' ', '_', $file_name_pdf);
@@ -122,36 +130,36 @@ if (empty($errors)){
 		$uname = MysqliDB::getInstance()->query("SELECT COUNT(documentId) As existDocument FROM document WHERE ref_lsl= ".$ref_lsl." and doc_type='fcl'");
 		$rss = $uname->fetch_array(MYSQLI_ASSOC);
 		if($rss["existDocument"] == "0"){
-		MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`,  `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_fcl . "','" . $file_name_fcl . "','" . $file_ext_fcl . "','fcl')");
+			MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`,  `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_fcl . "','" . $file_name_fcl . "','" . $file_ext_fcl . "','fcl')");
 		} else {
 			MysqliDB::getInstance()->query("UPDATE `document` SET `document_path`='".$path_fcl."',`document_name`='".$file_name_fcl."' WHERE ref_lsl='".$ref_lsl."' and doc_type='fcl'");
 		}
-			echo MysqliDB::getInstance()->error();
-		}
-		if(!empty($_FILES['file_exp_simi'])){
+		echo MysqliDB::getInstance()->error();
+	}
+	if(!empty($_FILES['file_exp_simi'])){
 		$uname = MysqliDB::getInstance()->query("SELECT COUNT(documentId) As existDocument FROM document WHERE ref_lsl= ".$ref_lsl." and doc_type='simi'");
 		$rss = $uname->fetch_array(MYSQLI_ASSOC);
 		if($rss["existDocument"] == "0"){
 			
-		MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`, `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_simi . "','" . $file_name_simi . "','" . $file_ext_simi . "','simi')");
+			MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`, `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_simi . "','" . $file_name_simi . "','" . $file_ext_simi . "','simi')");
 		} else {
 			MysqliDB::getInstance()->query("UPDATE `document` SET `document_path`='".$path_simi."',`document_name`='".$file_name_simi."' WHERE ref_lsl='".$ref_lsl."' and doc_type='simi'");
 		}
-			echo MysqliDB::getInstance()->error();
-		}		
-		if(!empty($_FILES['file_exp_reqfound'])){
+		echo MysqliDB::getInstance()->error();
+	}		
+	if(!empty($_FILES['file_exp_reqfound'])){
 		$uname = MysqliDB::getInstance()->query("SELECT COUNT(documentId) As existDocument FROM document WHERE ref_lsl= ".$ref_lsl." and doc_type='reqfound'");
 		$rss = $uname->fetch_array(MYSQLI_ASSOC);
 		if($rss["existDocument"] == "0"){
 			
-		MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`, `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_reqfound . "','" . $file_name_reqfound . "','" . $file_ext_reqfound . "','reqfound')");
+			MysqliDB::getInstance()->query("INSERT INTO `document`(`clientId`,`operationTypeId`, `ref_lsl`, `document_path`,`document_name`, `document_ext`, `doc_type`) VALUES ('" . $client_id . "','" . $op_type . "','" . $ref_lsl . "','" . $path_reqfound . "','" . $file_name_reqfound . "','" . $file_ext_reqfound . "','reqfound')");
 		} else {
 			MysqliDB::getInstance()->query("UPDATE `document` SET `document_path`='".$path_reqfound."',`document_name`='".$file_name_reqfound."' WHERE ref_lsl='".$ref_lsl."' and doc_type='reqfound'");
 		}
-			echo MysqliDB::getInstance()->error();
-		}
-		MysqliDB::getInstance()->query("UPDATE `operation` SET `ref_client`='".$ref_client."',`operation_number`='".$operation_number."',`merchandise`='".$merchandise."',`shipment`='".$shipment."',`owner`='".$owner."',`custom_document`='".$custom_doc."',`funding_request_date`='".$request_funding."',`recived_funds_date`='".$recived_funds."',`lsl_bill`='".$lsl_bill."',`operation_state`='".$op_state."' WHERE `ref_lsl` = '".$ref_lsl."'");
-	}else{
-		print_r($errors);
+		echo MysqliDB::getInstance()->error();
 	}
-	?>
+	MysqliDB::getInstance()->query("UPDATE `operation` SET `ref_client`='".$ref_client."',`operation_number`='".$operation_number."',`merchandise`='".$merchandise."',`shipment`='".$shipment."',`owner`='".$owner."',`custom_document`='".$custom_doc."',`funding_request_date`='".$request_funding."',`recived_funds_date`='".$recived_funds."',`lsl_bill`='".$lsl_bill."',`operation_state`='".$op_state."',`transport_expo`='".$transport_expo."',`agency`='".$agency."',`channel`='".$channel."',`fob_rights`='".$fob_rights."',`cut_off`='".$cut_off."',`deposit_enter`='".$deposit_enter."' WHERE `ref_lsl` = '".$ref_lsl."'");
+}else{
+	print_r($errors);
+}
+?>

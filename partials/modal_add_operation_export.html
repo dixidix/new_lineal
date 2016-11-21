@@ -52,7 +52,7 @@
       <div class="col-xs-12">
         <div class="form-group">
           <span>Transporte: </span>
-          <input  id="transport" type="text" class="form-control" ng-model="operation_export.transport" placeholder="Ingrese el transporte"/>
+          <input  id="transport_expo" type="text" class="form-control" ng-model="operation_export.transport_expo" placeholder="Ingrese el transporte"/>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-        <span>Ingreso a dep&oacute;sito: </span>
+          <span>Ingreso a dep&oacute;sito: </span>
           <div class="input-group">
             <input class="date_day form-control" ng-model="operation_export.deposit_enter_day" type="number" id="date_day" min="1" max="31" placeholder="día">
             <input class="date_month form-control" ng-model="operation_export.deposit_enter_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
@@ -145,9 +145,16 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label>
-            <div  class="btn search_btn"><input type="file" name="exp_pdf" onchange="angular.element(this).scope().get_filename()" ng-model="operation_export.exp_pdf" uploader-model="operation_export.exp_pdf"/>Selecciona un archivo de PDF</div>
+            <div ng-if="operation_export.exp_pdf">
+              <div class="btn search_btn" style="background:green;"><input type="file" name="exp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_pdf"/>Selecciona un archivo de PDF</div>
+              <a style="margin-left: 25px;" href="{{operation_export.exp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+              <p id="file_exp_pdf_msg">{{exp_pdf_title}}</p>
+            </div>
+            <div ng-if="!operation_export.exp_pdf">
+              <div class="btn search_btn"><input type="file" name="exp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_pdf"/>Selecciona un archivo de PDF</div>
+              <p id="file_exp_pdf_msg">{{exp_pdf_title}}</p>
+            </div>
           </label>
-          <p id="file_exp_pdf_msg">{{exp_pdf_title}}</p>
         </div>
       </div>
     </div>
@@ -155,47 +162,68 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label>
-            <div  class="btn search_btn"><input type="file" name="exp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_fcl"/>Selecciona un archivo de FCL</div>
-          </label>
-          <p id="file_exp_fcl_msg">{{exp_fcl_title}}</p>
-        </div>
+            <div ng-if="operation_export.exp_fcl">
+             <div class="btn search_btn" style="background:green;"><input type="file" name="exp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_fcl"/>Selecciona un archivo de FCL</div>
+             <a style="margin-left: 25px;" href="{{operation_export.exp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+             <p id="file_exp_fcl_msg">{{exp_fcl_title}}</p>
+           </div>
+           <div ng-if="!operation_export.exp_fcl">
+            <div class="btn search_btn"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_fcl"/>Selecciona un archivo de FCL</div>
+            <p id="file_exp_fcl_msg">{{exp_fcl_title}}</p>
+          </div>
+        </label>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label>
+          <div ng-if="operation_export.exp_simi">
+            <div class="btn search_btn" style="background:green;"><input type="file" name="exp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_simi"/>Selecciona un archivo de SIMI</div>
+            <a style="margin-left: 25px;" href="{{operation_export.exp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <p id="file_exp_simi_msg">{{exp_simi_title}}</p>
+          </div>
+          <div ng-if="!operation_export.exp_simi">
             <div class="btn search_btn"><input type="file" name="exp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_simi"/>Selecciona un archivo de SIMI</div>
             <p id="file_exp_simi_msg">{{exp_simi_title}}</p>
-          </label>
-        </div>
+          </div>
+        </label>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label>
+          <div ng-if="operation_export.exp_reqfound">
+            <div class="btn search_btn"  style="background:green;"><input type="file" name="exp_reqfound" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_reqfound"/>Selecciona un archivo de REQ. FONDOS</div>
+            <a style="margin-left: 25px;" href="{{operation_export.exp_reqfound}}" target="_blank" ><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <p id="file_exp_reqfound_msg">{{imp_reqfound_title}}</p>
+          </div>
+          <div ng-if="!operation_export.exp_reqfound">
             <div class="btn search_btn"><input type="file" name="exp_reqfound" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_export.exp_reqfound"/>Selecciona un archivo de REQ. FONDOS</div>
             <p id="file_exp_reqfound_msg">{{exp_reqfound_title}}</p>
-          </label>
-        </div>
+          </div>
+        </label>
       </div>
     </div>
-    <div class="row" ng-show="isEditing">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <span>Estado de la operación: </span>
-          <select id="select_op_state" ng-model="operation_export.op_state" class="form-control header_controls">
-            <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
-            <option value="0" selected>En Curso</option>
-            <option value="1">Terminado</option>
-          </select>
-        </div>
+  </div>
+  <div class="row" ng-show="isEditing">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Estado de la operación: </span>
+        <select id="select_op_state" ng-model="operation_export.op_state" class="form-control header_controls">
+          <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+          <option value="0" selected>En Curso</option>
+          <option value="1">Terminado</option>
+        </select>
       </div>
     </div>
-    <div class="modal-footer">
-      <input id="submit_exp" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
-    </div>
-  </form>
+  </div>
+  <div class="modal-footer">
+    <input id="submit_exp" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+    <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+  </div>
+</form>
 </div>

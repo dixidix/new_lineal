@@ -5,6 +5,10 @@ html,  body  {
   font-size: 12px;
   background-color: #EBEBEB;
 }
+body.tooltip{
+  position: fixed;
+  z-index: 9999999999999999;
+}
 .progress-bar-lineal{
   width:100%;
   padding:3px;
@@ -216,59 +220,59 @@ th  {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}*/
-.cp_expo_tb td,.cp_expo_tb th {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.table-curved td a {
-  color: #2e2e2e;
-  cursor: pointer;
-}
-.table-curved > :first-child > :first-child > :first-child  {
-  border-radius:  6px 0 0 0;
-}
-.table-curved > :first-child > :first-child > :last-child  {
-  border-radius:  0 6px 0 0;
-}
-.table-curved > :last-child > :last-child > :first-child  {
-  border-radius:  0 0 0 6px;
-}
-.table-curved > :last-child > :last-child > :last-child  {
-  border-radius:  0 0 6px 0;
-}
-.table  {
-  font-size: 11px;
-  color: #2e2e2e;
-  text-align:  center;
-  vertical-align:  middle;
-  background-color: #fff;
-}
-.pagination > .active > a,  .pagination > .active > a:focus,  .pagination > .active > a:hover,  .pagination > .active > span,  .pagination > .active > span:focus,  .pagination > .active > span:hover  {
-  background-color: #cd6702;
-  border-color: #fff;
-  cursor: pointer;
-}
-.pagination > li > a,  .pagination > li > span  {
-  cursor: pointer;
-  color: #2e2e2e;
-}
-.pagination > li > a:hover,  .pagination > li > a:focus,  .pagination > li > span:hover,  .pagination > li > span:focus {
-  color: #2e2e2e;
-}
-.pagination {
-  margin-left: 40%;
-}
-.import,  .export,  .users,  .clients,  .cpanel, .bills  {
-  padding:  2% 0 2% 1%;
-  padding-bottom: 5%;
-}
-.nav-tabs {
- background-color: #eee;
- color: #2e2e2e;
-}
-.nav-tabs li  {
+  }*/
+  .cp_expo_tb td,.cp_expo_tb th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .table-curved td a {
+    color: #2e2e2e;
+    cursor: pointer;
+  }
+  .table-curved > :first-child > :first-child > :first-child  {
+    border-radius:  6px 0 0 0;
+  }
+  .table-curved > :first-child > :first-child > :last-child  {
+    border-radius:  0 6px 0 0;
+  }
+  .table-curved > :last-child > :last-child > :first-child  {
+    border-radius:  0 0 0 6px;
+  }
+  .table-curved > :last-child > :last-child > :last-child  {
+    border-radius:  0 0 6px 0;
+  }
+  .table  {
+    font-size: 11px;
+    color: #2e2e2e;
+    text-align:  center;
+    vertical-align:  middle;
+    background-color: #fff;
+  }
+  .pagination > .active > a,  .pagination > .active > a:focus,  .pagination > .active > a:hover,  .pagination > .active > span,  .pagination > .active > span:focus,  .pagination > .active > span:hover  {
+    background-color: #cd6702;
+    border-color: #fff;
+    cursor: pointer;
+  }
+  .pagination > li > a,  .pagination > li > span  {
+    cursor: pointer;
+    color: #2e2e2e;
+  }
+  .pagination > li > a:hover,  .pagination > li > a:focus,  .pagination > li > span:hover,  .pagination > li > span:focus {
+    color: #2e2e2e;
+  }
+  .pagination {
+    margin-left: 40%;
+  }
+  .import,  .export,  .users,  .clients,  .cpanel, .bills  {
+    padding:  2% 0 2% 1%;
+    padding-bottom: 5%;
+  }
+  .nav-tabs {
+   background-color: #eee;
+   color: #2e2e2e;
+ }
+ .nav-tabs li  {
   border-top:  1px #ddd solid;
   border-right:  1px #ddd solid;
   border-radius:  5px 5px 0 0;
@@ -626,7 +630,15 @@ table.table.cp_impo_tb{
   width:200%;
   overflow-x: scroll;
 }
+table.table.cp_expo_tb{
+  max-width: initial;
+  width:200%;
+  overflow-x: scroll;
+}
 table.table.cp_impo_tb tbody td:last-child{
+  padding-bottom: 0px;
+}
+table.table.cp_expo_tb tbody td:last-child{
   padding-bottom: 0px;
 }
 .fixed_actions{
@@ -634,6 +646,7 @@ table.table.cp_impo_tb tbody td:last-child{
   right: 8px;
   border-left:3px solid #cccccc !important;
   width: 102px;
+  overflow: visible;
 }
 .fixed_title th{
   position: absolute;
@@ -643,13 +656,14 @@ table.table.cp_impo_tb tbody td:last-child{
 
 td.actions{
   background-color:white;
+  overflow: visible;
 }
 .table-responsive.cp_impo_tb-responsive{
   padding-top:40px;
   width: 91.5%;
 }
 .table-responsive.cp_expo_tb-responsive{
-  padding-top:34px;
+  padding-top:35px;
   width: 91.5%;
 }
 @media only screen and (min-device-width : 1400px) {
@@ -657,7 +671,7 @@ td.actions{
     padding-top: 2%;
     width: 93.5%;
   }
-    .table-responsive.cp_expo_tb-responsive{
+  .table-responsive.cp_expo_tb-responsive{
     padding-top: 2%;
     width: 93.5%;
   }
@@ -673,7 +687,7 @@ td.actions{
     padding-top: 2%;
     width: 94.5%;
   }
-    .table-responsive.cp_expo_tb-responsive{
+  .table-responsive.cp_expo_tb-responsive{
     padding-top: 2%;
     width: 94.5%;
   }
@@ -701,7 +715,4 @@ td.actions{
 }
 .condition_error {
   color:red;
-}
-.tooltip{
-  z-index: 9999999999;
 }

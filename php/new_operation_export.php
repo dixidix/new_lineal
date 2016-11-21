@@ -11,6 +11,7 @@ if (empty($errors)){
 	$request_funding = date("Y-m-d", strtotime($_POST['request_funding']));
 	$recived_funds = date("Y-m-d", strtotime($_POST['recived_funds']));
 	$expired_simi = date("Y-m-d", strtotime($_POST['expired_simi']));
+	$deposit_enter = date("Y-m-d", strtotime($_POST['deposit_enter']));
 	$ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_client']));
 	$operation_number = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['operation_number']));
 	$merchandise = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['merchandise']));
@@ -19,6 +20,13 @@ if (empty($errors)){
 	$client_id = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['client_id']));
 	$op_type = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['op_type']));
 	$owner = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['owner']));
+
+	$transport_expo = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['transport_expo']));
+	$channel = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['channel']));
+	$fob_rights = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_rights']));
+	$agency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency']));
+	$cut_off = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['cut_off']));
+
 	if(!empty($_FILES['file_exp_pdf'])){
 		$file_name_pdf = $_FILES['file_exp_pdf']['name'];
 		$file_name_pdf = str_replace(' ', '_', $file_name_pdf);
@@ -107,7 +115,7 @@ if (empty($errors)){
 		}
 	}
 	echo
-	MysqliDB::getInstance()->query("INSERT INTO `operation` (`ref_lsl`,`ref_client`,`operation_number`, `merchandise`, `transport`,`shipment`, `shipment_origin`, `estimated_arrival`, `custom_document`, `custom_document_djai`, `arrival_date`, `release_date`, `lsl_bill`, `clientId`, `operationTypeId`, `owner`,`funding_request_date`, `recived_funds_date`, `expired_simi`) VALUES (null,'".$ref_client."','".$operation_number."','".$merchandise."',null,'".$shipment."',null,null,'".$custom_doc."',null,null,null,'".$lsl_bill."','".$client_id."','".$op_type."','".$owner."','".$request_funding."','".$recived_funds."','".$expired_simi."')");
+	MysqliDB::getInstance()->query("INSERT INTO `operation` (`ref_lsl`,`ref_client`,`operation_number`, `merchandise`, `transport`,`shipment`, `shipment_origin`, `estimated_arrival`, `custom_document`, `custom_document_djai`, `arrival_date`, `release_date`, `lsl_bill`, `clientId`, `operationTypeId`, `owner`,`funding_request_date`, `recived_funds_date`, `expired_simi`, `transport_expo`, `agency`,`channel`, `fob_rights`, `cut_off`,`deposit_enter`  ) VALUES (null,'".$ref_client."','".$operation_number."','".$merchandise."',null,'".$shipment."',null,null,'".$custom_doc."',null,null,null,'".$lsl_bill."','".$client_id."','".$op_type."','".$owner."','".$request_funding."','".$recived_funds."','".$expired_simi."','".$transport_expo."','".$agency."','".$channel."','".$fob_rights."','".$cut_off."','".$deposit_enter."')");
 	echo MysqliDB::getInstance()->error();
 	$res = MysqliDB::getInstance()->query("SELECT ref_lsl FROM operation WHERE ref_client='". $ref_client . "'");
 	$rss = $res->fetch_array(MYSQLI_ASSOC);
