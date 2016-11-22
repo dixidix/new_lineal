@@ -1,0 +1,43 @@
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+  </div>
+  <div class="modal-body">
+    <form name="see_more_import" class="form-inline modal-see-more" role="form">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Transporte: </strong></label>
+            <span>{{  seeMoreLineal.transport }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Condici&oacute;n: </strong></label>
+            <span>{{  seeMoreLineal.condition }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Forzoso: </strong></label>
+            <span>{{  seeMoreLineal.forced_date }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label><strong>Fecha de liberaci&oacute;n: </strong></label>
+            <span>{{  seeMoreLineal.release_date }}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn search_btn" ng-click="$dismiss()">Cerrar</button>
+  </div>

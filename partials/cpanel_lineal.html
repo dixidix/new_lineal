@@ -16,36 +16,51 @@
       <button class="btn  add_operation" ng-click="add_operation_lineal()"><i class="glyphicon glyphicon-plus"></i> Op. Lineal</button>
     </div>
   </div>
-  <div class="table-responsive">
-    <div class="operation_state setWhite">
-      <div class="icon_inprogress"></div>
-      <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
-      <div class="icon_finished"></div>
-      <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}} - Total en proceso: {{operations_in_progress}}</span>
-    </div>
-    <table class="table table-striped table-curved table-condensed table-hover">
+  <div class="operation_state setWhite">
+    <div class="icon_inprogress"></div>
+    <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
+    <div class="icon_finished"></div>
+    <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}} - Total en proceso: {{operations_in_progress}}</span>
+  </div>
+  <div class="table-responsive cp_impo_tb-responsive">
+    <table class="table cp_impo_tb table-striped table-curved table-condensed table-hover">
       <thead>
         <tr>
-          <th>Enviado por:</th>
-          <th>Fecha Liberaci&oacute;n</th>
-          <th>Fecha Embarque</th>
-          <th>Ref LSL</th>
-          <th>Empresa</th>
-          <th>Documento Aduanero</th>
+          <th>Owner</th>
+          <th>Referencia</th>
+          <th>N° Op.</th>
+          <th>Mercader&iacute;a</th>
           <th>SIMI</th>
-          <th class="col-xs-1">Acciones</th>
+          <th>FOB SIMI</th>
+          <th>VTO. SIMI</th>
+          <th>Embarque Origen</th>
+          <th>Arribo Estimado</th>
+          <th>Fecha Arribo</th>
+          <th>Monto Agencia</th>
+          <th>Documento Aduanero</th>
+          <th>FOB Despacho</th>
+          <th class="fixed_actions">Acciones</th>
         </tr>
       </thead>
       <tbody>
-      <tr data-ng-class="lineal.operation_state == 0 ? 'op_active' : 'op_finished'" ng-repeat="lineal in  filtered = operation_lineal | filter:{operation_state: state } | filter : paginate | filter : owner_search| filter : reflsl_search| filter : doc_aduanero_search|  startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-          <td>{{ lineal.owner }}</td>
-          <td>{{ lineal.release_date }}</td>
-          <td>{{ lineal.shipment }}</td>
-          <td>{{ lineal.ref_lsl }}</td>
-          <td>{{ lineal.client_name }}</td>
+        <tr data-ng-class="lineal.operation_state == 0 ? 'op_active' : 'op_finished'" ng-repeat="lineal in  filtered = operation_lineal | filter:{operation_state: state } | filter : paginate | filter : owner_search| filter : reflsl_search| filter : doc_aduanero_search|  startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+          <td>{{ lineal.owner}}</td>
+          <td>{{ lineal.ref_client }}</td>
+          <td>{{ lineal.operation_number }}</td>
+          <td>{{ lineal.merchandise }}</td>
+          <td>{{ lineal.custom_document_djai }}</td>
+          <td>{{ lineal.fob_simi }}</td>
+          <td>{{ lineal.expired_simi }}</td>
+          <td>{{ lineal.shipment_origin }}</td>
+          <td>{{ lineal.estimated_arrival }}</td>
+          <td>{{ lineal.arrival_date }}</td>
+          <td>{{ lineal.agency_amount }}</td>
           <td>{{ lineal.custom_document }}</td>
-          <td>{{ lineal.simi_document }}</td>
-          <td class="col-xs-1">
+          <td>{{ lineal.fob_despacho }}</td>
+          <td class="fixed_actions actions">
+          <a tooltip="Ver m&aacute;s" tooltip-trigger tooltip-placement="top" ng-click="seeMoreInfo(lineal)" style="color:#66cc00;cursor:pointer;text-decoration: none; padding-right:5px;">
+              <i style="top:0;" class="glyphicon glyphicon-folder-open"></i>
+            </a>
             <a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyLineal(lineal, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
               <i class="glyphicon glyphicon-edit"></i>
             </a>
@@ -57,18 +72,18 @@
      </tr>
    </tbody>
  </table>
- <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
 </div>
+<pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
 </div>
 <div class="progress">
   <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
   aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
   Cargando...
-  </div>
+</div>
 </div>
 <div class="progress sending">
   <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
   aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
   Enviando...
-  </div>
+</div>
 </div>

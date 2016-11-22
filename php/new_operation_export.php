@@ -12,6 +12,7 @@ if (empty($errors)){
 	$recived_funds = date("Y-m-d", strtotime($_POST['recived_funds']));
 	$expired_simi = date("Y-m-d", strtotime($_POST['expired_simi']));
 	$deposit_enter = date("Y-m-d", strtotime($_POST['deposit_enter']));
+	$cut_off = date("Y-m-d", strtotime($_POST['cut_off']));
 	$ref_client = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['ref_client']));
 	$operation_number = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['operation_number']));
 	$merchandise = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['merchandise']));
@@ -25,7 +26,6 @@ if (empty($errors)){
 	$channel = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['channel']));
 	$fob_rights = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fob_rights']));
 	$agency = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['agency']));
-	$cut_off = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['cut_off']));
 
 	if(!empty($_FILES['file_exp_pdf'])){
 		$file_name_pdf = $_FILES['file_exp_pdf']['name'];

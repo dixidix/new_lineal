@@ -153,8 +153,18 @@ $outp .= '"transport_expo":"'   . $rs["transport_expo"].'",';
 $outp .= '"agency":"'   . $rs["agency"].'",';
 $outp .= '"channel":"'   . $rs["channel"].'",';
 $outp .= '"fob_rights":"'   . $rs["fob_rights"].'",';
-$outp .= '"cut_off":"'   . $rs["cut_off"].'",';
-
+if(!empty($rs["cut_off"])){
+    $cut_off = date("d-m-Y", strtotime($rs["cut_off"]));
+    if($cut_off != $compare_date){
+        $outp .= '"cut_off":"'   . $cut_off .'",';
+    }else{
+        $cut_off = "";
+        $outp .= '"cut_off":"'   . $cut_off .'",';
+    }
+}else{
+    $cut_off = "";
+    $outp .= '"cut_off":"'   . $cut_off .'",';
+}
 $outp .= '"lsl_bill":"'. $rs["lsl_bill"].'"}';
 }
 $outp ='{"operations":['.$outp.']}';
