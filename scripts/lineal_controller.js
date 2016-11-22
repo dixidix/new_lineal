@@ -114,7 +114,7 @@ mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, 
     });
   };
 });
-mylsl.controller('modal_add_operation_lineal', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http,filterFilter) {
+mylsl.controller('modal_add_operation_lineal', function (uploadService2, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http,filterFilter) {
   'use strict';
   $scope.actionTitle = "Agregar una operación de lineal";
   $scope.action = "Guardar";
@@ -135,19 +135,55 @@ mylsl.controller('modal_add_operation_lineal', function ($state, $rootScope,$mod
     operation_number:"",
     merchandise:"",
     custom_document_djai:"",
+    fob_simi_currency: "",
     fob_simi:"",
-    expired_simi:"",
-    shipment_origin:"",
-    estimated_arrival:"",
-    arrival_date:"",
+    expired_simi_day: "",
+    expired_simi_month: "",
+    expired_simi_year: "",
+    shipment_origin_day: "",
+    shipment_origin_month: "",
+    shipment_origin_year: "",
+    estimated_arrival_day: "",
+    estimated_arrival_month: "",
+    estimated_arrival_year: "",
+    arrival_date_day: "",
+    arrival_date_month: "",
+    arrival_date_year: "",
     agency_amount:"",
     custom_document:"",
+    fob_despacho_currency: "",
     fob_despacho:"",
-    transport: "",
+    transport_lineal: "",
     condition: "",
-    forced_date: "",
-    release_date: ""
+    forced_day: "",
+    forced_month: "",
+    forced_year: "",
+    release_date_day: "",
+    release_date_month: "",
+    release_date_year: ""
   };
+  var ref_client = undefined;
+  $scope.check_ref_client = function(){
+    if($scope.operation_lineal.ref_client != ref_client &&  $scope.operation_lineal.ref_client != ""){
+      $http.get("./php/check_ref_client.php", {
+        params: {
+          ref_client : $scope.operation_lineal.ref_client
+        }
+      }).then(function (response) {
+        if(response.data == true){
+          $scope.validate_ref_client = "el código de operación ya existe en el sistema";
+          $('#imp_ref_client').focus();
+          $('#submit_lineal').prop('disabled', true);
+        }else {
+          $scope.validate_ref_client = "";
+          $('#submit_lineal').prop('disabled', false);
+        }
+      });
+    }else {
+      $scope.validate_ref_client = "";
+      $('#submit_lineal').prop('disabled', false);
+    }
+  }
   $scope.create_lineal = function (){ 
     // $scope.loading = true;
     // $('.modal').css("overflow-y", "hidden");   
@@ -155,111 +191,165 @@ mylsl.controller('modal_add_operation_lineal', function ($state, $rootScope,$mod
     $('.cpanelLineal').hide();
     $('.sending').fadeIn();
     $modalInstance.dismiss('cancel');
-    $scope.operation_lineal.shipment = $scope.operation_lineal.shipment_year + "-" + $scope.operation_lineal.shipment_month + "-" + $scope.operation_lineal.shipment_day;
+    $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
+    $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
+    $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
     $scope.operation_lineal.release_date = $scope.operation_lineal.release_date_year + "-" + $scope.operation_lineal.release_date_month + "-" + $scope.operation_lineal.release_date_day;
+    $scope.operation_lineal.expired_simi = $scope.operation_lineal.expired_simi_year + "-" + $scope.operation_lineal.expired_simi_month + "-" + $scope.operation_lineal.expired_simi_day;
     $scope.operation_lineal.forced_date = $scope.operation_lineal.forced_year + "-" + $scope.operation_lineal.forced_month + "-" + $scope.operation_lineal.forced_day;
+
     $scope.operation_lineal.client_id = $('#select_client').val();
-    $scope.operation_lineal.owner_id = $('#select_owner').val();
-    $scope.operation_lineal.condition = $('#condition').val();
-    $http({
-      method: 'POST',
-      url: './php/new_operation_lineal.php',
-      data: {
-        ownerId: $scope.operation_lineal.owner_id,
-        release_date: $scope.operation_lineal.release_date,
-        shipment: $scope.operation_lineal.shipment,
-        clientId:  $scope.operation_lineal.client_id,
-        custom_document: $scope.operation_lineal.custom_document,
-        simi_document: $scope.operation_lineal.simi_document
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $('.sending').hide();
-        $('.cpanelLineal').fadeIn();
-        $scope.loading = false;
-        $state.go('mylsl.cpanel_lineal', {}, {reload: true});
-      }
+    $scope.operation_lineal.owner = $('#select_owner').val();
+    $scope.operation_lineal.condition = $('#select_condition').val();
+    $scope.operation_lineal.fob_simi_currency = $('#select_fob_simi').val() || "";
+    $scope.operation_lineal.fob_despacho_currency = $('#select_fob_despacho').val() || "";
+
+    $scope.operation_lineal.timeStamp = (new Date).getTime();
+    var OpLineal = $scope.operation_lineal;
+    uploadService2.newLineal(OpLineal).then(function (res) {
+      $('.sending').hide();
+      $('.import').fadeIn();
+      $state.go($state.current, {}, {
+        reload: true
+      });
+    }).finally(function(){
+      $scope.loading = false;
     });
   };
 });
-mylsl.controller('modal_edit_operation_lineal', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http, filterFilter) {
+
+mylsl.controller('modal_edit_operation_lineal', function (uploadService2, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http, filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Operación de Lineal";
   $scope.action = "Editar";
   $scope.isEditing = true;
   $scope.loadResponsable = true;
   $scope.loadClient = true;
+  
   $http.get('./php/get_users.php').then(function (response) {
     $scope.users = filterFilter(response.data.users, {clientId:'1'});
     $scope.loadResponsable = false;
   });
+
   $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
     $scope.loadClient = false;
   });
-  $scope.select_client = $rootScope.linealEdit.clientId;
+
   $scope.select_owner = $rootScope.linealEdit.ownerId;
-  var shipment =  $rootScope.linealEdit.shipment.split("-");
-  var release_date = $rootScope.linealEdit.release_date.split("-");
+  $scope.condition = $rootScope.linealEdit.condition;
+  $scope.fob_simi_currency = $rootScope.linealEdit.fob_simi_currency;
+  $scope.fob_despacho_currency = $rootScope.linealEdit.fob_despacho_currency;
+  $scope.op_state = $rootScope.linealEdit.operation_state;
+
+
+  if($rootScope.linealEdit.expired_simi != undefined && $rootScope.linealEdit.expired_simi != null){
+    var expired_simi = $rootScope.linealEdit.expired_simi.split("-");
+  } else {
+    expired_simi[0] = "";
+    expired_simi[1] = "";
+    expired_simi[2] = "";
+  }
+
+  if($rootScope.linealEdit.shipment_origin != undefined && $rootScope.linealEdit.shipment_origin != null){
+    var shipment_origin = $rootScope.linealEdit.shipment_origin.split("-");
+  } else {
+    shipment_origin[0] = "";
+    shipment_origin[1] = "";
+    shipment_origin[2] = "";
+  }
+
+  if($rootScope.linealEdit.estimated_arrival != undefined && $rootScope.linealEdit.estimated_arrival != null){
+    var estimated_arrival = $rootScope.linealEdit.estimated_arrival.split("-");
+  } else {
+    estimated_arrival[0] = "";
+    estimated_arrival[1] = "";
+    estimated_arrival[2] = "";
+  }
+
+
+  if($rootScope.linealEdit.arrival_date != undefined && $rootScope.linealEdit.arrival_date != null){
+    var arrival_date = $rootScope.linealEdit.arrival_date.split("-");
+  } else {
+    arrival_date[0] = "";
+    arrival_date[1] = "";
+    arrival_date[2] = "";
+  }
+  if($rootScope.linealEdit.forced_date != undefined && $rootScope.linealEdit.forced_date != null){
+    var forced_date = $rootScope.linealEdit.forced_date.split("-");
+  } else {
+    forced_date[0] = "";
+    forced_date[1] = "";
+    forced_date[2] = "";
+  }
+  if($rootScope.linealEdit.release_date != undefined && $rootScope.linealEdit.release_date != null){
+    var release_date = $rootScope.linealEdit.release_date.split("-");
+  } else {
+    release_date[0] = "";
+    release_date[1] = "";
+    release_date[2] = "";
+  }
+
   $scope.operation_lineal = {
+    ref_lsl: $rootScope.linealEdit.ref_lsl,
+    ref_client: $rootScope.linealEdit.ref_client,
+    operation_number: $rootScope.linealEdit.operation_number,
+    merchandise: $rootScope.linealEdit.merchandise,
+    custom_document_djai: $rootScope.linealEdit.custom_document_djai,
+    fob_simi: $rootScope.linealEdit.fob_simi,
+    expired_simi_day: parseInt(expired_simi[0]),
+    expired_simi_month: parseInt(expired_simi[1]),
+    expired_simi_year: parseInt(expired_simi[2]),
+    shipment_origin_day: parseInt(shipment_origin[0]),
+    shipment_origin_month: parseInt(shipment_origin[1]),
+    shipment_origin_year: parseInt(shipment_origin[2]),
+    estimated_arrival_day: parseInt(estimated_arrival[0]),
+    estimated_arrival_month: parseInt(estimated_arrival[1]),
+    estimated_arrival_year: parseInt(estimated_arrival[2]),
+    arrival_date_day: parseInt(arrival_date[0]),
+    arrival_date_month: parseInt(arrival_date[1]),
+    arrival_date_year: parseInt(arrival_date[2]),
+    agency_amount: $rootScope.linealEdit.agency_amount,
+    custom_document: $rootScope.linealEdit.custom_document,
+    fob_despacho: $rootScope.linealEdit.fob_despacho,
+    transport_lineal: $rootScope.linealEdit.transport,
+    forced_day: parseInt(forced_date[0]),
+    forced_month: parseInt(forced_date[1]),
+    forced_year: parseInt(forced_date[2]),
     release_date_day: parseInt(release_date[0]),
-    release_date_month: parseInt(release_date[1]),
-    release_date_year: parseInt(release_date[2]),
-    shipment_day: parseInt(shipment[0]),
-    shipment_month: parseInt(shipment[1]),
-    shipment_year: parseInt(shipment[2]),
-    custom_document:$rootScope.linealEdit.custom_document,
-    op_state: $rootScope.linealEdit.operation_state,
-    simi_document: $rootScope.linealEdit.simi_document
+    release_date_month:parseInt(release_date[1]),
+    release_date_year: parseInt(release_date[2])
   };
+
+
   $scope.create_lineal = function (){ 
-    // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.cpanelLineal').hide();
     $('.sending').fadeIn();
     $modalInstance.dismiss('cancel');
-    $scope.operation_lineal.op_state = $('#select_op_state').val();
-    $scope.operation_lineal.shipment = $scope.operation_lineal.shipment_year + "-" + $scope.operation_lineal.shipment_month + "-" + $scope.operation_lineal.shipment_day;
+    $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
+    $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
+    $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
     $scope.operation_lineal.release_date = $scope.operation_lineal.release_date_year + "-" + $scope.operation_lineal.release_date_month + "-" + $scope.operation_lineal.release_date_day;
+    $scope.operation_lineal.expired_simi = $scope.operation_lineal.expired_simi_year + "-" + $scope.operation_lineal.expired_simi_month + "-" + $scope.operation_lineal.expired_simi_day;
+    $scope.operation_lineal.forced_date = $scope.operation_lineal.forced_year + "-" + $scope.operation_lineal.forced_month + "-" + $scope.operation_lineal.forced_day;
+
     $scope.operation_lineal.client_id = $('#select_client').val();
-    $scope.operation_lineal.owner_id = $('#select_owner').val();
-    $http({
-      method: 'POST',
-      url: './php/edit_operation_lineal.php',
-      data: {
-        ref_lsl: $rootScope.linealEdit.ref_lsl,
-        ownerId: $scope.operation_lineal.owner_id,
-        release_date: $scope.operation_lineal.release_date,
-        shipment: $scope.operation_lineal.shipment,
-        clientId:  $scope.operation_lineal.client_id,
-        custom_document: $scope.operation_lineal.custom_document,
-        simi_document: $scope.operation_lineal.simi_document,
-        op_state: $scope.operation_lineal.op_state
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $('.sending').hide();
-        $('.cpanelLineal').fadeIn();
-        $scope.loading = false;
-        $state.go('mylsl.cpanel_lineal', {}, {reload: true});
-      }
+    $scope.operation_lineal.owner = $('#select_owner').val();
+    $scope.operation_lineal.condition = $('#select_condition').val();
+    $scope.operation_lineal.fob_simi_currency = $('#select_fob_simi').val() || "";
+    $scope.operation_lineal.fob_despacho_currency = $('#select_fob_despacho').val() || "";
+    $scope.operation_lineal.op_state = $('#select_op_state').val();
+
+    $scope.operation_lineal.timeStamp = (new Date).getTime();
+    var OpLineal = $scope.operation_lineal;
+    uploadService2.editLineal(OpLineal).then(function (res) {
+      $('.sending').hide();
+      $('.import').fadeIn();
+      $state.go($state.current, {}, {
+        reload: true
+      });
+    }).finally(function(){
+      $scope.loading = false;
     });
   };
 });
@@ -304,3 +394,91 @@ mylsl.controller('modal_see_more_lineal', function (uploadService, $scope, $stat
   };
   $scope.client_hide = true;
 });
+
+mylsl.directive('uploaderModel', ["$parse", function ($parse) {
+  'use strict';
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.on("change", function (e) {
+        $parse(iAttrs.uploaderModel).assign(scope, iElement[0].files[0]);
+      });
+    }
+  };
+}]);
+mylsl.service('uploadService2', ["$http", "$q", function ($http, $q) {
+  'use strict';
+
+  this.newLineal = function (OpLineal) {
+    var deferred = $q.defer();
+    var formData = new FormData();
+
+    formData.append("owner", OpLineal.owner);
+    formData.append("ref_client", OpLineal.ref_client);
+    formData.append("operation_number", OpLineal.operation_number);
+    formData.append("merchandise", OpLineal.merchandise);
+    formData.append("custom_document_djai", OpLineal.custom_document_djai);
+    formData.append("fob_simi_currency", OpLineal.fob_simi_currency);
+    formData.append("fob_simi", OpLineal.fob_simi);
+    formData.append("expired_simi", OpLineal.expired_simi);
+    formData.append("shipment_origin", OpLineal.shipment_origin);
+    formData.append("estimated_arrival", OpLineal.estimated_arrival);
+    formData.append("arrival_date", OpLineal.arrival_date);
+    formData.append("agency_amount", OpLineal.agency_amount);
+    formData.append("custom_document", OpLineal.custom_document);
+    formData.append("fob_despacho_currency", OpLineal.fob_despacho_currency);
+    formData.append("fob_despacho", OpLineal.fob_despacho);
+    formData.append("transport_lineal", OpLineal.transport_lineal);
+    formData.append("condition", OpLineal.condition);
+    formData.append("forced_date", OpLineal.forced_date);
+    formData.append("release_date", OpLineal.release_date);
+
+    return $http.post("./php/new_operation_lineal.php", formData, {
+      transformRequest: angular.identity,
+      headers: {'Content-Type': undefined}
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+
+  this.editLineal = function (OpLineal) {
+    var deferred = $q.defer();
+    var formData = new FormData();
+
+    formData.append("owner", OpLineal.owner);
+    formData.append("ref_client", OpLineal.ref_client);
+    formData.append("ref_lsl", OpLineal.ref_lsl);
+    formData.append("operation_number", OpLineal.operation_number);
+    formData.append("merchandise", OpLineal.merchandise);
+    formData.append("custom_document_djai", OpLineal.custom_document_djai);
+    formData.append("fob_simi_currency", OpLineal.fob_simi_currency);
+    formData.append("fob_simi", OpLineal.fob_simi);
+    formData.append("expired_simi", OpLineal.expired_simi);
+    formData.append("shipment_origin", OpLineal.shipment_origin);
+    formData.append("estimated_arrival", OpLineal.estimated_arrival);
+    formData.append("arrival_date", OpLineal.arrival_date);
+    formData.append("agency_amount", OpLineal.agency_amount);
+    formData.append("custom_document", OpLineal.custom_document);
+    formData.append("fob_despacho_currency", OpLineal.fob_despacho_currency);
+    formData.append("fob_despacho", OpLineal.fob_despacho);
+    formData.append("transport_lineal", OpLineal.transport_lineal);
+    formData.append("condition", OpLineal.condition);
+    formData.append("forced_date", OpLineal.forced_date);
+    formData.append("release_date", OpLineal.release_date);
+    formData.append("op_type", OpLineal.op_type);
+    formData.append("op_state", OpLineal.op_state);
+
+    return $http.post('./php/edit_operation_lineal.php', formData, {
+      transformRequest: angular.identity,
+      headers: {'Content-Type': undefined}
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+}]);

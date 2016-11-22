@@ -666,6 +666,9 @@ td.actions{
   padding-top:35px;
   width: 91.5%;
 }
+.table-responsive.cp_lineal_tb-responsive{
+  width: 91.5%;
+}
 @media only screen and (min-device-width : 1400px) {
   .table-responsive.cp_impo_tb-responsive{
     padding-top: 2%;

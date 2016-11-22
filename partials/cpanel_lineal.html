@@ -22,7 +22,7 @@
     <div class="icon_finished"></div>
     <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}} - Total en proceso: {{operations_in_progress}}</span>
   </div>
-  <div class="table-responsive cp_impo_tb-responsive">
+  <div class="table-responsive cp_lineal_tb-responsive">
     <table class="table cp_impo_tb table-striped table-curved table-condensed table-hover">
       <thead>
         <tr>
@@ -49,14 +49,14 @@
           <td>{{ lineal.operation_number }}</td>
           <td>{{ lineal.merchandise }}</td>
           <td>{{ lineal.custom_document_djai }}</td>
-          <td>{{ lineal.fob_simi }}</td>
+          <td>{{ lineal.fob_simi_currency }} {{ lineal.fob_simi }}</td>
           <td>{{ lineal.expired_simi }}</td>
           <td>{{ lineal.shipment_origin }}</td>
           <td>{{ lineal.estimated_arrival }}</td>
           <td>{{ lineal.arrival_date }}</td>
-          <td>{{ lineal.agency_amount }}</td>
+          <td><span ng-if="lineal.agency_amount">$ {{ lineal.agency_amount }}</span></td>
           <td>{{ lineal.custom_document }}</td>
-          <td>{{ lineal.fob_despacho }}</td>
+          <td>{{ lineal.fob_despacho_currency }} {{ lineal.fob_despacho }}</td>
           <td class="fixed_actions actions">
           <a tooltip="Ver m&aacute;s" tooltip-trigger tooltip-placement="top" ng-click="seeMoreInfo(lineal)" style="color:#66cc00;cursor:pointer;text-decoration: none; padding-right:5px;">
               <i style="top:0;" class="glyphicon glyphicon-folder-open"></i>

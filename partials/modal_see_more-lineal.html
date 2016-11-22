@@ -16,7 +16,8 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label><strong>Condici&oacute;n: </strong></label>
-            <span>{{  seeMoreLineal.condition }}</span>
+            <span ng-if="seeMoreLineal.condition !== 'null'">{{  seeMoreLineal.condition }}</span>
+            <span ng-if="seeMoreLineal.condition == 'null'">No Info.</span>
           </div>
         </div>
       </div>

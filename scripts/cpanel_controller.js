@@ -444,7 +444,6 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
     $scope.operation_import.fob_simi_currency = $('#select_fob_simi').val() || "";
     $scope.operation_import.fob_despacho_currency = $('#select_fob_despacho').val() || "";
     $scope.operation_import.condition = $('#select_condition').val() || "";    
-    console.log($scope.operation_import);
     $scope.operation_import.timeStamp = (new Date).getTime();
     var OpImport = $scope.operation_import;
     uploadService.import(OpImport).then(function (res) {
@@ -1856,6 +1855,7 @@ mylsl.directive('uploaderModel', ["$parse", function ($parse) {
     }
   };
 }]);
+
 mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
   'use strict';
   this.export = function (OpExport) {

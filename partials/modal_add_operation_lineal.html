@@ -1,9 +1,9 @@
 <div class="spinner" ng-show="loading">
   <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
 
-<div class="progress" style="width:90%;margin:5%;">
-  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
-  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  <div class="progress" style="width:90%;margin:5%;">
+    <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
   </div>
 </div>
 
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>responsable: </span>
+          <span>Responsable: </span>
           <select ng-disabled="loadResponsable" id="select_owner" ng-model="select_owner" class="form-control header_controls" required>
             <option selected="selected" disabled="disabled" value="">Selecciona un responsable</option>
             <option ng-repeat="user in users" value="{{user.userId}}">{{ user.name }}</option>
@@ -28,43 +28,25 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>fecha de liberaci&oacute;n: </span>
-          <div class="input-group">
-            <input class="date_day form-control" ng-model="operation_lineal.release_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-            <input class="date_month form-control" ng-model="operation_lineal.release_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-            <input class="date_year form-control" ng-model="operation_lineal.release_date_year" type="number" id="date_year" min="1970" placeholder="año">
-          </div>
+          <span>Referencia: </span>
+          <input  id="imp_ref_client" name="refCliente" type="text" class="form-control"  ng-blur="check_ref_client()" ng-model="operation_lineal.ref_client" placeholder="Ingrese el c&oacute;digo de referencia" required/>
+          <p class="validate_error">{{validate_ref_client}}</p>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-        <span>fecha de Embarque</span>
-          <div class="input-group">
-            <input class="date_day form-control" ng-model="operation_lineal.shipment_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-            <input class="date_month form-control" ng-model="operation_lineal.shipment_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-            <input class="date_year form-control" ng-model="operation_lineal.shipment_year" type="number" id="date_year" min="1970" placeholder="año">
-          </div>
+          <span>N&uacute;mero de operaci&oacute;n: </span>
+          <input id="imp_operation_number" type="text" class="form-control"  ng-model="operation_lineal.operation_number" placeholder="Ingrese el número de operación" required/>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>Cliente: </span>
-          <select ng-disabled="loadClient" id="select_client" ng-model="select_client" class="form-control header_controls" required>
-            <option selected="selected" disabled="disabled" value="">Selecciona un cliente</option>
-            <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <span>Documento Aduanero: </span>
-          <input type="text" class="form-control" ng-model="operation_lineal.custom_document" placeholder="Ingrese la descripción del doc. aduanero"/>
+          <span>Mercadería: </span>
+          <input  type="text" name="merchandise" class="form-control" ng-model="operation_lineal.merchandise" placeholder="Ingrese la mercaderia a transportar" />
         </div>
       </div>
     </div>
@@ -72,25 +54,165 @@
       <div class="col-xs-12">
         <div class="form-group">
           <span>Documento SIMI: </span>
-          <input type="text" class="form-control" ng-model="operation_lineal.simi_document" placeholder="Ingrese la descripción del doc. SIMI" />
+          <input name="custom_document_djai" type="text" class="form-control" ng-model="operation_lineal.custom_document_djai" placeholder="Ingrese la descripción del doc. DJAI"/>
         </div>
       </div>
     </div>
-    <div class="row" ng-show="isEditing">
+    <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <span>Estado de la operación: </span>
-          <select id="select_op_state" ng-model="operation_lineal.op_state" class="form-control header_controls">
-            <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
-            <option value="0" selected>En Curso</option>
-            <option value="1">Terminado</option>
-          </select>
+          <span>FOB SIMI: </span>
+          <div class="input-group select-group">
+            <select id="select_fob_simi" class="form-control" ng-model="fob_simi_currency">
+              <option selected="selected" disabled="disabled" value="">Seleccione la moneda</option>
+              <option value="$">Pesos Argentinos</option>
+              <option value="U$D">D&oacute;lares</option>
+              <option value="€">Euros</option>
+            </select>
+            <input  type="text" name="fob_simi" class="form-control" ng-model="operation_lineal.fob_simi" placeholder="Ingrese el monto de FOB SIMI" />
+          </div>
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <input id="submit_lineal" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Fecha de vencimiento de SIMI: </span>
+          <div class="input-group">
+            <input class="date_day form-control" ng-model="operation_lineal.expired_simi_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input class="date_month form-control" ng-model="operation_lineal.expired_simi_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input class="date_year form-control" ng-model="operation_lineal.expired_simi_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
     </div>
-  </form>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Embarque origen: </span>
+          <div class="input-group">
+            <input  name="shipment_origin_day" class="date_day form-control" ng-model="operation_lineal.shipment_origin_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input name="shipment_origin_month" class="date_month form-control" ng-model="operation_lineal.shipment_origin_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input name="shipment_origin_year" class="date_year form-control" ng-model="operation_lineal.shipment_origin_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Arribo Estimado: </span>
+          <div class="input-group">
+            <input name="estimated_arrival_day" class="date_day form-control" ng-model="operation_lineal.estimated_arrival_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input name="estimated_arrival_month" class="date_month form-control" ng-model="operation_lineal.estimated_arrival_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input name="estimated_arrival_year" class="date_year form-control" ng-model="operation_lineal.estimated_arrival_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Fecha de Arribo: </span>
+          <div class="input-group">
+            <input name="arrival_date_day" class="date_day form-control" ng-model="operation_lineal.arrival_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input name="arrival_date_month" class="date_month form-control" ng-model="operation_lineal.arrival_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input name="arrival_date_year" class="date_year form-control" ng-model="operation_lineal.arrival_date_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Monto Agencia: </span>
+          <input name="agency_amount" type="text" class="form-control" ng-model="operation_lineal.agency_amount" placeholder="Ingrese el monto de agencia (pesos arg.)" />
+        </div>
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Documento Aduanero: </span>
+          <input name="custom_document_djai" type="text" class="form-control" ng-model="operation_lineal.custom_document" placeholder="Ingrese la descripción del doc. DJAI"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>FOB Despacho: </span>
+          <div class="input-group select-group">
+            <select id="select_fob_despacho" class="form-control" ng-model="fob_despacho_currency">
+             <option selected="selected" disabled="disabled" value="">Seleccione la moneda</option>
+             <option value="$">Pesos Argentinos</option>
+             <option value="U$D">D&oacute;lares</option>
+             <option value="€">Euros</option>
+           </select>
+           <input  type="text" name="fob_despacho" class="form-control" ng-model="operation_lineal.fob_despacho" placeholder="Ingrese el monto de FOB Despacho" />
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Transporte: </span>
+        <input  id="transport_lineal" type="text" class="form-control" ng-model="operation_lineal.transport_lineal" placeholder="Ingrese el transporte"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Condici&oacute;n: </span>
+        <select id="select_condition" class="form-control" ng-model="condition">
+          <option selected="selected" disabled="disabled" value="">Seleccione el estado</option>
+          <option value="Buena">Buena</option>
+          <option value="Mala">Mala</option>
+        </select>
+      </div>
+    </div>
+  </div>
+     <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Forzoso: </span>
+        <div class="input-group">
+          <input name="forced_day" class="date_day form-control" ng-model="operation_lineal.forced_day" type="number" id="forced_day" min="1" max="31" placeholder="día">
+          <input name="forced_month" class="date_month form-control" ng-model="operation_lineal.forced_month" type="number" id="forced_month" min="1" max="12" placeholder="mes">
+          <input name="forced_year" class="date_year form-control" ng-model="operation_lineal.forced_year" type="number" id="forced_year" min="1970" placeholder="año">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Fecha de liberación: </span>
+        <div class="input-group">
+          <input name="release_date_day" class="date_day form-control" ng-model="operation_lineal.release_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+          <input name="release_date_month" class="date_month form-control" ng-model="operation_lineal.release_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+          <input name="release_date_year" class="date_year form-control" ng-model="operation_lineal.release_date_year" type="number" id="date_year" min="1970" placeholder="año">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="isEditing">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <span>Estado de la operación: </span>
+        <select id="select_op_state" ng-model="op_state" class="form-control header_controls">
+           <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+          <option value="0">En Curso</option>
+          <option value="1">Terminado</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input id="submit_lineal" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+    <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+  </div>
+</form>
 </div>

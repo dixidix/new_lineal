@@ -2,6 +2,26 @@ mylsl.controller('export_controller', function ($rootScope, $cookies, $scope, $h
   'use strict';
   $('.export').hide();
   $('.sending').hide();
+    $scope.links = [
+    {
+      label: 'Link 1',
+      title: 'Link 1 title',
+      content: 'Link 1 content',
+      img: 'img1.jpg'
+    },
+    {
+      label: 'Link 2',
+      title: 'Link 2 title',
+      content: 'Link 2 content',
+      img: 'img2.jpg'
+    },
+    {
+      label: 'Link 3',
+      title: 'Link 3 title',
+      content: 'Link 3 content',
+      img: 'img3.jpg'
+    }   
+  ]; 
   $scope.downloadDoc = function(file, docs){
     if(file == 'pdf'){
       $('a#'+file).attr({target: '_self', href: docs.file_pdf ,download: docs.file_name_pdf });

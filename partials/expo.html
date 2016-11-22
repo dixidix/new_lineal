@@ -9,9 +9,9 @@
 				<div class="icon_inprogress"></div> <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="top">En proceso</span>
 				<div class="icon_finished"></div> <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="top">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span> </div>
 			</div>
-			<div class="table-responsive cp_expo_tb-responsive">
+			<div class="table-responsive">
 
-				<table class="table cp_expo_tb table-striped table-curved table-condensed table-hover">
+				<table class="table table-striped table-curved table-condensed table-hover">
 					<thead>
 						<tr>
 							<th>Ref Clientes</th>
@@ -27,6 +27,7 @@
 							<th>FOB Permiso</th>
 							<th>Cut Off</th>
 							<th>Factura LSL</th>
+<!-- 							<th>Acciones</th>	 -->						
 							<th>PDF</th>
 							<th>FCL</th>
 							<th>SIMI</th>
@@ -48,6 +49,7 @@
 							<td>{{ export.fob_rights }}</td>
 							<td>{{ export.cut_off }}</td>
 							<td>{{ export.lsl_bill }}</td>
+<!-- 							<td><a uib-popover popover-trigger="mouseenter" popover-placement="bottom" uib-popover-template="'tpl.html'" data-img="http://domain.com/img1.jpg" data-content = "Link 1 content...">Descargas</a></td> -->
 							<td><a id="pdf" tooltip="Descargar PDF" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('pdf',export)" ng-class="{disabled: !export.file_pdf}"><i class="glyphicon glyphicon-file"></i></a></td>
 							<td><a id="fcl" tooltip="Descargar FCL" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('fcl',export)" ng-class="{disabled: !export.file_fcl}"><i class="glyphicon glyphicon-file"></i></a></td>
 							<td><a id="simi" tooltip="Descargar SIMI" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('simi',export)" ng-class="{disabled: !export.file_simi}"><i class="glyphicon glyphicon-file"></i></a></td>
@@ -64,3 +66,13 @@
 			Cargando...
 		</div>
 	</div>
+	<script type="text/ng-template" id="tpl.html">
+  <div class="popover-content">
+    <div>
+      <div>
+          <span>{{link.title}}</span>
+      </div>
+      <div>{{ link.content }}</div>
+    </div>
+  </div> 
+</script>
