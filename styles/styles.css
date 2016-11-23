@@ -672,7 +672,7 @@ td.actions{
   width: 91.5%;
 }
 .table-responsive.cp_lineal_tb-responsive{
-  width: 91.5%;
+  width: 93.5%;
 }
 @media only screen and (min-device-width : 1400px) {
   .table-responsive.cp_impo_tb-responsive{
@@ -684,7 +684,7 @@ td.actions{
     width: 93.5%;
   }
   .fixed_title th{
-    top: 27%;
+    top: 158px;
   }
   .fixed_actions{
     right: 1%;

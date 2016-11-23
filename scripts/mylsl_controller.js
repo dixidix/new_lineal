@@ -1,4 +1,5 @@
 mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http,$window, $cookies, $state,cpanelService) {
+  $scope.hideLogo = false; 
   $http.get("./php/get_oldsite.php", {
     params: {
       client_id: localStorage.getItem("client_id"),
@@ -25,7 +26,7 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http,$window
       }
     });
   }
-  console.log($rootScope.oldUser);
+
   $scope.show_add_op = (localStorage.getItem('role') !== 'Admin');
 
   $scope.navigate = function(section){
@@ -164,7 +165,9 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http,$window
 
    $state.go('mylsl');
 
-   $('#mnleft').hide();  
+   $('#mnleft').hide(); 
+
+   $scope.hideLogo = true; 
 
    $('.progress').fadeIn();  
 

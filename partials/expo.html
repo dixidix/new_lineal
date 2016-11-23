@@ -6,8 +6,8 @@
 		</div>
 		<div class="operation_state setWhite">
 			<div class="col-xs-6 pull-right">
-				<div class="icon_inprogress"></div> <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="top">En proceso</span>
-				<div class="icon_finished"></div> <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="top">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span> </div>
+				<div class="icon_inprogress"></div> <span class="state_description state_filter" ng-click="filterInProgress()" uib-tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="top">En proceso</span>
+				<div class="icon_finished"></div> <span class="state_description state_filter" ng-click="filterFinished()" uib-tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="top">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span> </div>
 			</div>
 			<div class="table-responsive cp_expo_tb-responsive">
 				<table class="table expo_tb table-striped table-curved table-condensed table-hover">
@@ -44,7 +44,7 @@
 							<td>{{ export.fob_rights }}</td>
 							<td>{{ export.cut_off }}</td>
 							<td>{{ export.lsl_bill }}</td>
-							<td class="fixed_actions actions"><a popover-placement="left" popover-trigger="'outsideClick'" uib-popover-template="popoverTemplateUrl" popover-title="Descargas" tooltip-trigger tooltip-placement="top" ng-click="getDownloadLinks(export)">Descargas</a></td>
+							<td class="fixed_actions actions"><a popover-placement="left" popover-trigger="'outsideClick'" uib-popover-template="popoverTemplateUrl" popover-title="Descargas"  tooltip-placement="top" uib-tooltip="Descargas" ng-click="getDownloadLinks(export)"><i style="color:#007a99; padding-right:5px;" class="glyphicon glyphicon-download-alt"></i></a></td>
 						</tr>
 					</tbody>
 				</table>

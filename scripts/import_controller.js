@@ -4,19 +4,12 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
   $('.sending').hide();
 
 
-  $scope.downloadDoc = function(file, docs){
-    if(file == 'pdf'){
-      $('a#'+file).attr({target: '_self', href: docs.file_pdf ,download: docs.file_name_pdf });
-    }
-    if(file == 'fcl'){
-      $('a#'+file).attr({target: '_self', href: docs.file_fcl ,download: docs.file_name_fcl });
-    }
-    if(file == 'simi'){
-      $('a#'+file).attr({target: '_self', href: docs.file_simi ,download: docs.file_name_simi });
-    }     
-    if(file == 'reqfound'){
-      $('a#'+file).attr({target: '_self', href: docs.file_reqfound ,download: docs.file_name_reqfound });
-    } 
+  $scope.popoverTemplateUrl = "./partials/popover_downloads.html";
+
+  $scope.getDownloadLinks = function(docs){
+    $rootScope.downloadLinks = {};
+    $rootScope.downloadLinks = docs;
+    console.log($rootScope.downloadLinks);
   };
   $scope.seeMoreInfo = function(impo){
     console.log(impo);

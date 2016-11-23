@@ -18,9 +18,9 @@
   </div>
   <div class="operation_state setWhite">
     <div class="icon_inprogress"></div>
-    <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
+    <span class="state_description state_filter" ng-click="filterInProgress()" uib-tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
     <div class="icon_finished"></div>
-    <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}} - Total en proceso: {{operations_in_progress}}</span>
+    <span class="state_description state_filter" ng-click="filterFinished()" uib-tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}} - Total en proceso: {{operations_in_progress}}</span>
   </div>
   <div class="table-responsive cp_lineal_tb-responsive">
     <table class="table cp_impo_tb table-striped table-curved table-condensed table-hover">
@@ -58,13 +58,13 @@
           <td>{{ lineal.custom_document }}</td>
           <td>{{ lineal.fob_despacho_currency }} {{ lineal.fob_despacho }}</td>
           <td class="fixed_actions actions">
-          <a tooltip="Ver m&aacute;s" tooltip-trigger tooltip-placement="top" ng-click="seeMoreInfo(lineal)" style="color:#66cc00;cursor:pointer;text-decoration: none; padding-right:5px;">
+          <a uib-tooltip="Ver m&aacute;s" tooltip-trigger tooltip-placement="top" ng-click="seeMoreInfo(lineal)" style="color:#66cc00;cursor:pointer;text-decoration: none; padding-right:5px;">
               <i style="top:0;" class="glyphicon glyphicon-folder-open"></i>
             </a>
-            <a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyLineal(lineal, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
+            <a uib-tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyLineal(lineal, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
               <i class="glyphicon glyphicon-edit"></i>
             </a>
-            <a ng-click="deleteLineal(lineal, $index)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top" style="cursor:pointer;margin-right:5px;text-decoration: none;">
+            <a ng-click="deleteLineal(lineal, $index)" style="color:red;cursor:pointer;" uib-tooltip="Eliminar" tooltip-trigger tooltip-placement="top" style="cursor:pointer;margin-right:5px;text-decoration: none;">
              <i class="glyphicon glyphicon-remove"></i>
            </a>
          </td>

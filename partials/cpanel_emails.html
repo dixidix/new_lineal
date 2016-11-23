@@ -32,13 +32,13 @@
           <td>{{ email.name }}</td>
           <td>{{ email.email }}</td>
           <td class="col-xs-1">
-            <a tooltip="Enviar Mail" tooltip-trigger tooltip-placement="top" ng-click="mail" href="mailto:{{email.email}}" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
+            <a uib-tooltip="Enviar Mail" tooltip-trigger tooltip-placement="top" ng-click="mail" href="mailto:{{email.email}}" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
               <i class="glyphicon glyphicon-envelope"></i>
             </a>
-            <a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyEmail(email, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
+            <a uib-tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyEmail(email, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
               <i class="glyphicon glyphicon-edit"></i>
             </a>
-            <a ng-click="deleteEmail(email, $index)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top" style="cursor:pointer;margin-right:5px;text-decoration: none;">
+            <a ng-click="deleteEmail(email, $index)" style="color:red;cursor:pointer;" uib-tooltip="Eliminar" tooltip-trigger tooltip-placement="top" style="cursor:pointer;margin-right:5px;text-decoration: none;">
              <i class="glyphicon glyphicon-remove"></i>
            </a>
          </td>

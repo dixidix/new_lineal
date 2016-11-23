@@ -48,13 +48,13 @@
           <td style="min-width: 90px;">{{ client.cuit }}</td>
           <td style="min-width: 70px;">
             <div  ng-if="client.id !== '1'">
-              <a ng-click="uploadFileClient(client)" style="color:#000;cursor:pointer;text-decoration: none;"tooltip="Subir archivo" tooltip-trigger tooltip-placement="top">
+              <a ng-click="uploadFileClient(client)" style="color:#000;cursor:pointer;text-decoration: none;"uib-tooltip="Subir archivo" tooltip-trigger tooltip-placement="top">
                 <i class="glyphicon glyphicon-upload"></i>
               </a>
-              <a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;text-decoration: none;">
+              <a uib-tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;text-decoration: none;">
                 <i class="glyphicon glyphicon-edit"></i>
               </a>
-              <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top">
+              <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;text-decoration: none;" uib-tooltip="Eliminar" tooltip-trigger tooltip-placement="top">
                <i class="glyphicon glyphicon-remove"></i>
              </a>
            </div>

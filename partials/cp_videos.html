@@ -36,7 +36,7 @@
         <td>{{ video.filename}}</td>
         <td>{{ video.filetitle}}</td>
         <td>{{ video.fileDesc }}</td>
-        <td><a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyVideo(video)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteVideo(video)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td><a uib-tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyVideo(video)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteVideo(video)" style="color:red;cursor:pointer;text-decoration: none;" uib-tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
       </tr>
     </tbody>
   </table>
