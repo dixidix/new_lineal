@@ -88,6 +88,21 @@ if(!empty($rs["owner"])){
     $outp .= '"ownerId":"'   . $rs["owner"] .'",';
     $outp .= '"owner":"'   . $rss["name"] .'",';
 }
+$ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='pdf' and deleted=0");
+while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    $outp .= '"file_name_pdf":"'   . $rss["document_name"].'",';
+    $outp .= '"file_pdf":"'   . $rss["document_path"].'",';
+}
+$ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27' and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='fcl' and deleted=0");
+while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    $outp .= '"file_name_fcl":"'   . $rss["document_name"].'",';
+    $outp .= '"file_fcl":"'   . $rss["document_path"].'",';
+}
+$ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='simi' and deleted=0");
+while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    $outp .= '"file_name_simi":"'   . $rss["document_name"].'",';
+    $outp .= '"file_simi":"'   . $rss["document_path"].'",';
+}
 if(!empty($rs["forced_date"])){
     $forced_date = date("d-m-Y", strtotime($rs["forced_date"]));
     if($forced_date != $compare_date){

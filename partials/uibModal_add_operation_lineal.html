@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-        <div class="row">
+    <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
           <span>Documento Aduanero: </span>
@@ -174,7 +174,7 @@
       </div>
     </div>
   </div>
-     <div class="row">
+  <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
         <span>Forzoso: </span>
@@ -186,7 +186,7 @@
       </div>
     </div>
   </div>
-    <div class="row">
+  <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
         <span>Fecha de liberación: </span>
@@ -198,21 +198,72 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="isEditing">
+  <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
-        <span>Estado de la operación: </span>
-        <select id="select_op_state" ng-model="op_state" class="form-control header_controls">
-           <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
-          <option value="0">En Curso</option>
-          <option value="1">Terminado</option>
-        </select>
+        <label>
+          <div ng-if="operation_lineal.imp_pdf">
+            <div class="btn search_btn" style="background:green;"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_pdf"/>Selecciona un archivo de PDF</div>
+            <a style="margin-left: 25px;" href="{{operation_lineal.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <p id="file_pdf_msg">{{imp_pdf_title}}</p>
+          </div>
+          <div ng-if="!operation_lineal.imp_pdf">
+            <div class="btn search_btn"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_pdf"/>Selecciona un archivo de PDF</div>
+            <p id="file_pdf_msg">{{imp_pdf_title}}</p>
+          </div>
+        </label>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <input id="submit_lineal" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-    <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label>
+          <div ng-if="operation_lineal.imp_fcl">
+           <div class="btn search_btn" style="background:green;"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_fcl"/>Selecciona un archivo de FCL</div>
+           <a style="margin-left: 25px;" href="{{operation_lineal.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+           <p id="file_fcl_msg">{{imp_fcl_title}}</p>
+         </div>
+         <div ng-if="!operation_lineal.imp_fcl">
+          <div class="btn search_btn"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_fcl"/>Selecciona un archivo de FCL</div>
+          <p id="file_fcl_msg">{{imp_fcl_title}}</p>
+        </div>
+      </label>
+    </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <div ng-if="operation_lineal.imp_simi">
+          <div class="btn search_btn" style="background:green;"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_simi"/>Selecciona un archivo de SIMI</div>
+          <a style="margin-left: 25px;" href="{{operation_lineal.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <p id="file_simi_msg">{{imp_simi_title}}</p>
+        </div>
+        <div ng-if="!operation_lineal.imp_simi">
+          <div class="btn search_btn"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_simi"/>Selecciona un archivo de SIMI</div>
+          <p id="file_simi_msg">{{imp_simi_title}}</p>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row" ng-show="isEditing">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <span>Estado de la operación: </span>
+      <select id="select_op_state" ng-model="op_state" class="form-control header_controls">
+       <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+       <option value="0">En Curso</option>
+       <option value="1">Terminado</option>
+     </select>
+   </div>
+ </div>
+</div>
+<div class="modal-footer">
+  <input id="submit_lineal" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+  <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+</div>
 </form>
 </div>

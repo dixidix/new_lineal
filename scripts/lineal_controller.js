@@ -162,6 +162,58 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
     release_date_month: "",
     release_date_year: ""
   };
+
+    $scope.get_filename = function () {
+    $('input[name="imp_pdf"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_pdf_title = "Archivo: " + fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_pdf_msg').removeClass('validate_error');
+        $('#file_pdf_msg').addClass('validate_success');
+      }else {
+        $scope.imp_pdf_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_pdf_msg').addClass('validate_error');
+        $('#file_pdf_msg').removeClass('validate_success');
+      }
+      $('.uibModal-body').click();
+    });
+    $('input[name="imp_fcl"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_fcl_title = "Archivo: " +fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_fcl_msg').removeClass('validate_error');
+        $('#file_fcl_msg').addClass('validate_success');
+      }else {
+        $scope.imp_fcl_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_fcl_msg').addClass('validate_error');
+        $('#file_fcl_msg').removeClass('validate_success');
+      }
+      $('.uibModal-body').click();
+    });
+    $('input[name="imp_simi"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_simi_title = "Archivo: " +fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_simi_msg').removeClass('validate_error');
+        $('#file_simi_msg').addClass('validate_success');
+      }else {
+        $scope.imp_simi_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_simi_msg').addClass('validate_error');
+        $('#file_simi_msg').removeClass('validate_success');
+      }
+      $('.uibModal-body').click();
+    });
+  }
+
   var ref_client = undefined;
   $scope.check_ref_client = function(){
     if($scope.operation_lineal.ref_client != ref_client &&  $scope.operation_lineal.ref_client != ""){
