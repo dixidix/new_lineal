@@ -21,7 +21,7 @@
     "ngUpload": "~0.5.18"
   },
   "devDependencies": {
-    "ui-bootstrap": "~0.14.3",
-    "angular-bootstrap": "0.10.0"
+    "ui-bootstrap": "2.2.0",
+    "angular-bootstrap": "2.2.0"
   }
 }

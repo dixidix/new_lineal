@@ -1,4 +1,4 @@
-mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http, $state) {
+mylsl.controller('users_controller', function ($rootScope,filterFilter,$uibModal, $cookies, $scope, $http, $state) {
 
   'use strict';
 
@@ -116,11 +116,11 @@ mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $
 
   $scope.add_user = function(){
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_add_user.html',
+      templateUrl: './partials/uibModal_add_user.html',
 
-      controller: 'modal_add_user',
+      controller: 'uibModal_add_user',
 
       scope: $scope
 
@@ -136,11 +136,11 @@ mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $
 
     $rootScope.userEdit = modifyUser;
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_add_user.html',
+      templateUrl: './partials/uibModal_add_user.html',
 
-      controller: 'modal_edit_user',
+      controller: 'uibModal_edit_user',
 
       scope: $scope
 
@@ -166,11 +166,11 @@ mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $
 
     $rootScope.userDelete = deleteUser;
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_delete_user.html',
+      templateUrl: './partials/uibModal_delete_user.html',
 
-      controller: 'modal_delete_user',
+      controller: 'uibModal_delete_user',
 
       scope: $scope
 
@@ -184,7 +184,7 @@ mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $
 
 });
 
-mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_add_user', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
 
   'use strict';
 
@@ -308,9 +308,9 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
 
   // $scope.loading = true;
 
-  // $('.modal').css("overflow-y", "hidden");   
+  // $('.uibModal').css("overflow-y", "hidden");   
 
-  // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+  // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
 
   var roles = [];
 
@@ -336,7 +336,7 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
 
       $('.sending').fadeIn();
 
-      $modalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('cancel');
 
       $scope.roleError = "";
 
@@ -412,7 +412,7 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
 
 });
 
-mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_edit_user', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
 
   'use strict';
 
@@ -594,9 +594,9 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
   // $scope.loading = true;
 
-  // $('.modal').css("overflow-y", "hidden");   
+  // $('.uibModal').css("overflow-y", "hidden");   
 
-  // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+  // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
 
 
 
@@ -620,7 +620,7 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
     $('.sending').fadeIn();
 
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
 
     $http({
 
@@ -690,7 +690,7 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
 });
 
-mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_delete_user', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
 
   'use strict';
 

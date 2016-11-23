@@ -1,4 +1,4 @@
-mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $rootScope, $modal,cpanelService) {
+mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $rootScope, $uibModal,cpanelService) {
   'use strict';
   $scope.loading = false;
   $rootScope.cp_header_active = cpanelService.header_active;
@@ -65,54 +65,54 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   $scope.add_operation = function () {
     if ($rootScope.cp_operation === "1") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_export.html',
-        controller: 'modal_add_operation_export',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_export.html',
+        controller: 'uibModal_add_operation_export',
         scope: $scope
       })
       .result.then(function () {
       });
     } else if ($rootScope.cp_operation === "2") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_import.html',
-        controller: 'modal_add_operation_import',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_import.html',
+        controller: 'uibModal_add_operation_import',
         scope: $scope
       })
       .result.then(function () {
       });
     }  else if ($rootScope.cp_operation === "3") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_temp_import.html',
-        controller: 'modal_add_operation_temp_import',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_temp_import.html',
+        controller: 'uibModal_add_operation_temp_import',
         scope: $scope
       })
       .result.then(function () {
       });
     } else if ($rootScope.cp_operation === "4") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_bills.html',
-        controller: 'modal_add_operation_bills',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_bills.html',
+        controller: 'uibModal_add_operation_bills',
         scope: $scope
       })
       .result.then(function () {
       });
     } else if ($rootScope.cp_operation === "8") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_fares.html',
-        controller: 'modal_add_operation_fares',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_fares.html',
+        controller: 'uibModal_add_operation_fares',
         scope: $scope
       })
       .result.then(function () {
       });
     }else if ($rootScope.cp_operation === "26") {
       $rootScope.client_new_operation = $scope.select_client;
-      $modal.open({
-        templateUrl: './partials/modal_add_operation_videos.html',
-        controller: 'modal_add_operation_videos',
+      $uibModal.open({
+        templateUrl: './partials/uibModal_add_operation_videos.html',
+        controller: 'uibModal_add_operation_videos',
         scope: $scope
       })
       .result.then(function () {
@@ -121,9 +121,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyImport = function (editImport) {
     $rootScope.importEdit = editImport;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_import.html',
-      controller: 'modal_edit_operation_import',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_import.html',
+      controller: 'uibModal_edit_operation_import',
       scope: $scope
     })
     .result.then(function () {
@@ -131,9 +131,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.seeMore = function (seeMoreImport) {
     $rootScope.seeMoreImport = seeMoreImport;
-    $modal.open({
-      templateUrl: './partials/modal_see_more.html',
-      controller: 'modal_see_more_import',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_see_more.html',
+      controller: 'uibModal_see_more_import',
       scope: $scope
     })
     .result.then(function () {
@@ -141,9 +141,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteImport = function (deleteImport) {
     $rootScope.importDelete = deleteImport;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_import.html',
-      controller: 'modal_delete_operation_import',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_import.html',
+      controller: 'uibModal_delete_operation_import',
       scope: $scope
     })
     .result.then(function () {
@@ -151,9 +151,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyExport = function (editExport) {
     $rootScope.exportEdit = editExport;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_export.html',
-      controller: 'modal_edit_operation_export',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_export.html',
+      controller: 'uibModal_edit_operation_export',
       scope: $scope
     })
     .result.then(function () {
@@ -161,9 +161,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteExport = function (deleteExport) {
     $rootScope.exportDelete = deleteExport;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_export.html',
-      controller: 'modal_delete_operation_export',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_export.html',
+      controller: 'uibModal_delete_operation_export',
       scope: $scope
     })
     .result.then(function () {
@@ -171,9 +171,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyBills = function (editBills) {
     $rootScope.billsEdit = editBills;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_bills.html',
-      controller: 'modal_edit_operation_bills',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_bills.html',
+      controller: 'uibModal_edit_operation_bills',
       scope: $scope
     })
     .result.then(function () {
@@ -181,9 +181,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteBills = function (deleteBills) {
     $rootScope.billsDelete = deleteBills;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_bills.html',
-      controller: 'modal_delete_operation_bills',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_bills.html',
+      controller: 'uibModal_delete_operation_bills',
       scope: $scope
     })
     .result.then(function () {
@@ -191,9 +191,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyFare = function (editFare) {
     $rootScope.fareEdit = editFare;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_fares.html',
-      controller: 'modal_edit_operation_fares',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_fares.html',
+      controller: 'uibModal_edit_operation_fares',
       scope: $scope
     })
     .result.then(function () {
@@ -201,9 +201,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteFare = function (deleteFare) {
     $rootScope.fareDelete = deleteFare;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_fares.html',
-      controller: 'modal_delete_operation_fares',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_fares.html',
+      controller: 'uibModal_delete_operation_fares',
       scope: $scope
     })
     .result.then(function () {
@@ -211,9 +211,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyVideo = function (editVideo) {
     $rootScope.videoEdit = editVideo;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_videos.html',
-      controller: 'modal_edit_operation_videos',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_videos.html',
+      controller: 'uibModal_edit_operation_videos',
       scope: $scope
     })
     .result.then(function () {
@@ -221,9 +221,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteVideo = function (deleteVideo) {
     $rootScope.videoDelete = deleteVideo;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_videos.html',
-      controller: 'modal_delete_operation_videos',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_videos.html',
+      controller: 'uibModal_delete_operation_videos',
       scope: $scope
     })
     .result.then(function () {
@@ -231,9 +231,9 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.modifyTempImp = function (editTempImp) {
     $rootScope.tempImpEdit = editTempImp;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_temp_import.html',
-      controller: 'modal_edit_operation_temp_imp',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_temp_import.html',
+      controller: 'uibModal_edit_operation_temp_imp',
       scope: $scope
     })
     .result.then(function () {
@@ -241,16 +241,16 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
   $scope.deleteTempImp = function (deleteTempImp) {
     $rootScope.tempImpDelete = deleteTempImp;
-    $modal.open({
-      templateUrl: './partials/modal_delete_operation_temp_imp.html',
-      controller: 'modal_delete_operation_temp_imp',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_operation_temp_imp.html',
+      controller: 'uibModal_delete_operation_temp_imp',
       scope: $scope
     })
     .result.then(function () {
     });
   };
 });
-mylsl.controller('modal_add_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance, filterFilter) {
+mylsl.controller('uibModal_add_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance, filterFilter) {
   'use strict';
   $scope.loading = false;
   $scope.isEditing = false;
@@ -333,7 +333,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="imp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -349,7 +349,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="imp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -365,7 +365,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="imp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -381,7 +381,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
         $('#file_imp_reqfound_msg').addClass('validate_error');
         $('#file_imp_reqfound_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_client = function(){
@@ -429,7 +429,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
   $scope.create_import = function () {
     $('.import').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_import.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
     $scope.operation_import.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
     $scope.operation_import.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
@@ -457,7 +457,7 @@ mylsl.controller('modal_add_operation_import', function (uploadService, $scope, 
     });
   };
 });
-mylsl.controller('modal_add_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_add_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.isEditing = false;
   $scope.loading = false;
@@ -525,7 +525,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
         $('#file_exp_pdf_msg').addClass('validate_error');
         $('#file_exp_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="exp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -541,7 +541,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
         $('#file_exp_fcl_msg').addClass('validate_error');
         $('#file_exp_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="exp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -557,7 +557,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
         $('#file_exp_simi_msg').addClass('validate_error');
         $('#file_exp_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="exp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -573,7 +573,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
         $('#file_exp_reqfound_msg').addClass('validate_error');
         $('#file_exp_reqfound_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_client = function(){
@@ -621,7 +621,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
   $scope.create_export = function () {
     $('.export').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
     $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
     $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
@@ -644,7 +644,7 @@ mylsl.controller('modal_add_operation_export', function (uploadService, $scope, 
     });
   };
 });
-mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_add_operation_bills', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.isEditing = false;
   $scope.loading = false;
@@ -679,7 +679,7 @@ mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="bills_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -695,7 +695,7 @@ mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="bills_simi"]').change(function(){
       var fileName = $(this).val();
@@ -711,7 +711,7 @@ mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_lsl = function(){
@@ -739,10 +739,10 @@ mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $
     // $scope.loading = true;
     $('.bills').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $scope.operation_bills.request_funding = $scope.operation_bills.request_funding_year + "-" + $scope.operation_bills.request_funding_month + "-" + $scope.operation_bills.request_funding_day;
     $scope.operation_bills.recived_funds = $scope.operation_bills.recived_funds_year + "-" + $scope.operation_bills.recived_funds_month + "-" + $scope.operation_bills.recived_funds_day;
     $scope.operation_bills.client_id = $rootScope.cp_client;
@@ -761,7 +761,7 @@ mylsl.controller('modal_add_operation_bills', function (uploadService, $scope, $
     });
   };
 });
-mylsl.controller('modal_add_operation_fares', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_add_operation_fares', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.isEditing = false;
   $scope.loading = false;
@@ -774,16 +774,16 @@ mylsl.controller('modal_add_operation_fares', function (uploadService, $scope, $
   };
   $scope.create_fare = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.fares').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_fares.client_id = $rootScope.cp_client;
     $scope.operation_fares.op_type = $rootScope.cp_operation;
     var OpFares = $scope.operation_fares;
     uploadService.fares(OpFares).then(function (res) {
-      // $modalInstance.dismiss('cancel');
+      // $uibModalInstance.dismiss('cancel');
       $('.sending').hide();
       $('.fares').fadeIn();
       $state.go($state.current, {}, {
@@ -794,7 +794,7 @@ mylsl.controller('modal_add_operation_fares', function (uploadService, $scope, $
     });
   };
 });
-mylsl.controller('modal_add_operation_videos', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_add_operation_videos', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.isEditing = false;
   $scope.loading = false;
@@ -820,16 +820,16 @@ mylsl.controller('modal_add_operation_videos', function (uploadService, $scope, 
         $('#file_video_msg').addClass('validate_error');
         $('#file_video_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.create_video = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.videos').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_videos.client_id = $rootScope.cp_client;
     $scope.operation_videos.op_type = $rootScope.cp_operation;
     $scope.operation_videos.timeStamp = (new Date).getTime();
@@ -845,7 +845,7 @@ mylsl.controller('modal_add_operation_videos', function (uploadService, $scope, 
     });
   };
 });
-mylsl.controller('modal_add_operation_temp_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_add_operation_temp_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.isEditing = false;
   $scope.loading = false;
@@ -881,16 +881,16 @@ mylsl.controller('modal_add_operation_temp_import', function (uploadService, $sc
         $('#file_ctit_msg').addClass('validate_error');
         $('#file_ctit_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.create_temp_imp = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.tempImport').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_temp_imp.start_date = $scope.operation_temp_imp.start_date_year + "-" + $scope.operation_temp_imp.start_date_month + "-" + $scope.operation_temp_imp.start_date_day;
     $scope.operation_temp_imp.client_id = $rootScope.cp_client;
     $scope.operation_temp_imp.select_owner = $('#select_owner').val();
@@ -907,7 +907,7 @@ mylsl.controller('modal_add_operation_temp_import', function (uploadService, $sc
     });
   };
 });
-mylsl.controller('modal_see_more_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_see_more_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.loading = false;
   $scope.actionTitle = $rootScope.client.name_desc + " - información adicional";
@@ -922,7 +922,7 @@ mylsl.controller('modal_see_more_import', function (uploadService, $scope, $stat
   };
   $scope.client_hide = false;
 });
-mylsl.controller('modal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.loading = false;
   $scope.isEditing = true;
@@ -1035,7 +1035,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="imp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1051,7 +1051,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="imp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1067,7 +1067,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     }); 
     $('input[name="imp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -1083,7 +1083,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
         $('#file_imp_reqfound_msg').addClass('validate_error');
         $('#file_imp_reqfound_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_client = function(){
@@ -1130,11 +1130,11 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
   }
   $scope.create_import = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.import').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_import.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
     $scope.operation_import.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
     $scope.operation_import.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
@@ -1154,7 +1154,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
     $scope.operation_import.timeStamp = (new Date).getTime();
     var OpImport = $scope.operation_import;
     uploadService.editImport(OpImport).then(function (res) {
-      // $modalInstance.dismiss('cancel');
+      // $uibModalInstance.dismiss('cancel');
       $('.sending').hide();
       $('.import').fadeIn();
       $state.go($state.current, {}, {
@@ -1165,7 +1165,7 @@ mylsl.controller('modal_edit_operation_import', function (uploadService, $scope,
     });
   };
 });
-mylsl.controller('modal_edit_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Exportación";
   $scope.action = "Editar";
@@ -1262,7 +1262,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
         $('#file_exp_pdf_msg').addClass('validate_error');
         $('#file_exp_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="exp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1278,7 +1278,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
         $('#file_exp_fcl_msg').addClass('validate_error');
         $('#file_exp_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="exp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1294,7 +1294,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
         $('#file_exp_simi_msg').addClass('validate_error');
         $('#file_exp_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });   
     $('input[name="exp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -1310,7 +1310,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
         $('#file_exp_reqfound_msg').addClass('validate_error');
         $('#file_exp_reqfound_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_client = function(){
@@ -1358,7 +1358,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
   $scope.create_export = function () {
     $('.export').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
     $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
     $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
@@ -1382,7 +1382,7 @@ mylsl.controller('modal_edit_operation_export', function (uploadService, $scope,
     });
   };
 });
-mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_bills', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Factura";
   $scope.action = "Editar";
@@ -1420,7 +1420,7 @@ mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, 
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="bills_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1436,7 +1436,7 @@ mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, 
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
     $('input[name="bills_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1452,7 +1452,7 @@ mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, 
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_ref_lsl = function(){
@@ -1478,11 +1478,11 @@ mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, 
   }
   $scope.create_bills = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.bills').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_bills.client_id = $rootScope.cp_client;
     $scope.operation_bills.op_type = $rootScope.cp_operation;
     $scope.operation_bills.select_owner = $('#select_owner').val();
@@ -1499,7 +1499,7 @@ mylsl.controller('modal_edit_operation_bills', function (uploadService, $scope, 
     });
   };
 });
-mylsl.controller('modal_edit_operation_temp_imp', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_temp_imp', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Factura";
   $scope.action = "Editar";
@@ -1535,16 +1535,16 @@ mylsl.controller('modal_edit_operation_temp_imp', function (uploadService, $scop
         $('#file_ctit_msg').addClass('validate_error');
         $('#file_ctit_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.create_temp_imp = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.tempImport').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_temp_imp.start_date = $scope.operation_temp_imp.start_date_year + "-" + $scope.operation_temp_imp.start_date_month + "-" + $scope.operation_temp_imp.start_date_day;
     $scope.operation_temp_imp.client_id = $rootScope.cp_client;
     $scope.operation_temp_imp.select_owner = $('#select_owner').val();
@@ -1562,7 +1562,7 @@ mylsl.controller('modal_edit_operation_temp_imp', function (uploadService, $scop
     });
   };
 });
-mylsl.controller('modal_edit_operation_videos', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_videos', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar un Video";
   $scope.action = "Editar";
@@ -1589,16 +1589,16 @@ mylsl.controller('modal_edit_operation_videos', function (uploadService, $scope,
         $('#file_video_msg').addClass('validate_error');
         $('#file_video_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.create_video = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.videos').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_videos.client_id = $rootScope.cp_client;
     $scope.operation_videos.op_type = $rootScope.cp_operation;
     $scope.operation_videos.timeStamp = (new Date).getTime();
@@ -1614,7 +1614,7 @@ mylsl.controller('modal_edit_operation_videos', function (uploadService, $scope,
     });
   };
 });
-mylsl.controller('modal_edit_operation_fares', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_fares', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Tarifa";
   $scope.action = "Editar";
@@ -1627,11 +1627,11 @@ mylsl.controller('modal_edit_operation_fares', function (uploadService, $scope, 
   };
   $scope.create_fare = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.fares').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_fares.client_id = $rootScope.cp_client;
     $scope.operation_fares.op_type = $rootScope.cp_operation;
     $scope.operation_fares.fareId = $rootScope.fareEdit.faresId;
@@ -1647,7 +1647,7 @@ mylsl.controller('modal_edit_operation_fares', function (uploadService, $scope, 
     });
   };
 });
-mylsl.controller('modal_delete_operation_import', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_import', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_import = {
     ref_lsl: $rootScope.importDelete.ref_lsl,
@@ -1681,7 +1681,7 @@ mylsl.controller('modal_delete_operation_import', function ($scope, $state, $htt
     });
   };
 });
-mylsl.controller('modal_delete_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_export', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_export = {
     ref_lsl: $rootScope.exportDelete.ref_lsl,
@@ -1715,7 +1715,7 @@ mylsl.controller('modal_delete_operation_export', function ($scope, $state, $htt
     });
   };
 });
-mylsl.controller('modal_delete_operation_bills', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_bills', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_bills = {
     ref_lsl: $rootScope.billsDelete.ref_lsl
@@ -1747,7 +1747,7 @@ mylsl.controller('modal_delete_operation_bills', function ($scope, $state, $http
     });
   };
 });
-mylsl.controller('modal_delete_operation_fares', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_fares', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_fares = {
     fare: $rootScope.fareDelete.fare
@@ -1779,7 +1779,7 @@ mylsl.controller('modal_delete_operation_fares', function ($scope, $state, $http
     });
   };
 });
-mylsl.controller('modal_delete_operation_videos', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_videos', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_videos = {
     filename: $rootScope.videoDelete.filename
@@ -1811,7 +1811,7 @@ mylsl.controller('modal_delete_operation_videos', function ($scope, $state, $htt
     });
   };
 });
-mylsl.controller('modal_delete_operation_temp_imp', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('uibModal_delete_operation_temp_imp', function ($scope, $state, $http, $rootScope, $uibModalInstance) {
   'use strict';
   $scope.operation_temp_imp = {    
     ctit: $rootScope.tempImpDelete.ctit

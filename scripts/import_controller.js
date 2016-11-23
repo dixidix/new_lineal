@@ -1,4 +1,4 @@
-mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $http, filterFilter, $modal) {
+mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $http, filterFilter, $uibModal) {
   'use strict';
   $('.import').hide();
   $('.sending').hide();
@@ -22,11 +22,11 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
     console.log(impo);
     $rootScope.seeMoreImport = impo;
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_see_more.html',
+      templateUrl: './partials/uibModal_see_more.html',
 
-      controller: 'modal_see_more_client_import',
+      controller: 'uibModal_see_more_client_import',
 
       scope: $scope
 
@@ -121,7 +121,7 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
    $('.search_op').removeClass("search_btn_show_inp");
  });
 });
-mylsl.controller('modal_see_more_client_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_see_more_client_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.loading = false;
 

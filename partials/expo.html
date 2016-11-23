@@ -9,9 +9,8 @@
 				<div class="icon_inprogress"></div> <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="top">En proceso</span>
 				<div class="icon_finished"></div> <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="top">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span> </div>
 			</div>
-			<div class="table-responsive">
-
-				<table class="table table-striped table-curved table-condensed table-hover">
+			<div class="table-responsive cp_expo_tb-responsive">
+				<table class="table expo_tb table-striped table-curved table-condensed table-hover">
 					<thead>
 						<tr>
 							<th>Ref Clientes</th>
@@ -27,11 +26,7 @@
 							<th>FOB Permiso</th>
 							<th>Cut Off</th>
 							<th>Factura LSL</th>
-<!-- 							<th>Acciones</th>	 -->						
-							<th>PDF</th>
-							<th>FCL</th>
-							<th>SIMI</th>
-							<th style="max-width:30px;">REQ. FONDO</th>
+							<th class="fixed_actions">Acciones</th>							
 						</tr>
 					</thead>
 					<tbody>
@@ -49,16 +44,12 @@
 							<td>{{ export.fob_rights }}</td>
 							<td>{{ export.cut_off }}</td>
 							<td>{{ export.lsl_bill }}</td>
-<!-- 							<td><a uib-popover popover-trigger="mouseenter" popover-placement="bottom" uib-popover-template="'tpl.html'" data-img="http://domain.com/img1.jpg" data-content = "Link 1 content...">Descargas</a></td> -->
-							<td><a id="pdf" tooltip="Descargar PDF" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('pdf',export)" ng-class="{disabled: !export.file_pdf}"><i class="glyphicon glyphicon-file"></i></a></td>
-							<td><a id="fcl" tooltip="Descargar FCL" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('fcl',export)" ng-class="{disabled: !export.file_fcl}"><i class="glyphicon glyphicon-file"></i></a></td>
-							<td><a id="simi" tooltip="Descargar SIMI" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('simi',export)" ng-class="{disabled: !export.file_simi}"><i class="glyphicon glyphicon-file"></i></a></td>
-							<td><a id="reqfound" tooltip="Descargar" tooltip-trigger tooltip-placement="top" ng-click="downloadDoc('reqfound',export)" ng-class="{disabled: !export.file_reqfound}"><i class="glyphicon glyphicon-file"></i></a></td>
+							<td class="fixed_actions actions"><a popover-placement="left" popover-trigger="'outsideClick'" uib-popover-template="popoverTemplateUrl" popover-title="Descargas" tooltip-trigger tooltip-placement="top" ng-click="getDownloadLinks(export)">Descargas</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
+			<ul uib-pagination boundary-links="true" page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente"  first-text="Primero" last-text="&Uacute;ltimo"></ul>
 		</div>
 		<div class="progress">
 			<div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
@@ -67,12 +58,12 @@
 		</div>
 	</div>
 	<script type="text/ng-template" id="tpl.html">
-  <div class="popover-content">
-    <div>
-      <div>
-          <span>{{link.title}}</span>
-      </div>
-      <div>{{ link.content }}</div>
-    </div>
-  </div> 
-</script>
+		<div class="popover-content">
+			<div>
+				<div>
+					<span>{{link.title}}</span>
+				</div>
+				<div>{{ link.content }}</div>
+			</div>
+		</div> 
+	</script>

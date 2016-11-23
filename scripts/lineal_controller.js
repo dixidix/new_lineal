@@ -1,4 +1,4 @@
-mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http) {
+mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$uibModal, $cookies, $scope, $http) {
   'use strict';
   $scope.today = new Date();
   $('#cpanel_lineal').hide();
@@ -68,9 +68,9 @@ mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, 
     $scope.state = $scope.state === 0 ? "" : 0;
   }
   $scope.add_operation_lineal = function(){
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_lineal.html',
-      controller: 'modal_add_operation_lineal',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_lineal.html',
+      controller: 'uibModal_add_operation_lineal',
       scope: $scope
     })
     .result.then(function () {
@@ -79,11 +79,11 @@ mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, 
   $scope.seeMoreInfo = function(lineal){
     $rootScope.seeMoreLsl = lineal;
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_see_more-lineal.html',
+      templateUrl: './partials/uibModal_see_more-lineal.html',
 
-      controller: 'modal_see_more_lineal',
+      controller: 'uibModal_see_more_lineal',
 
       scope: $scope
 
@@ -95,9 +95,9 @@ mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, 
   }
   $scope.modifyLineal = function (modifyLineal) {
     $rootScope.linealEdit = modifyLineal;
-    $modal.open({
-      templateUrl: './partials/modal_add_operation_lineal.html',
-      controller: 'modal_edit_operation_lineal',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_operation_lineal.html',
+      controller: 'uibModal_edit_operation_lineal',
       scope: $scope
     })
     .result.then(function () {
@@ -105,16 +105,16 @@ mylsl.controller('lineal_controller', function ($rootScope,filterFilter,$modal, 
   };
   $scope.deleteLineal = function (deleteLineal) {
     $rootScope.linealDelete = deleteLineal;
-    $modal.open({
-      templateUrl: './partials/modal_delete_lineal.html',
-      controller: 'modal_delete_operation_lineal',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_lineal.html',
+      controller: 'uibModal_delete_operation_lineal',
       scope: $scope
     })
     .result.then(function () {
     });
   };
 });
-mylsl.controller('modal_add_operation_lineal', function (uploadService2, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http,filterFilter) {
+mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http,filterFilter) {
   'use strict';
   $scope.actionTitle = "Agregar una operación de lineal";
   $scope.action = "Guardar";
@@ -190,7 +190,7 @@ mylsl.controller('modal_add_operation_lineal', function (uploadService2, $state,
     // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.cpanelLineal').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
     $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
     $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
@@ -218,7 +218,7 @@ mylsl.controller('modal_add_operation_lineal', function (uploadService2, $state,
   };
 });
 
-mylsl.controller('modal_edit_operation_lineal', function (uploadService2, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http, filterFilter) {
+mylsl.controller('uibModal_edit_operation_lineal', function (uploadService2, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http, filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Operación de Lineal";
   $scope.action = "Editar";
@@ -325,7 +325,7 @@ mylsl.controller('modal_edit_operation_lineal', function (uploadService2, $state
   $scope.create_lineal = function (){ 
     $('.cpanelLineal').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
     $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
     $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
@@ -353,7 +353,7 @@ mylsl.controller('modal_edit_operation_lineal', function (uploadService2, $state
     });
   };
 });
-mylsl.controller('modal_delete_operation_lineal',  function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_delete_operation_lineal',  function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.operation_lineal = {
     ref_lsl: $rootScope.linealDelete.ref_lsl
@@ -380,7 +380,7 @@ mylsl.controller('modal_delete_operation_lineal',  function ($state, $rootScope,
       });
     };
   });
-mylsl.controller('modal_see_more_lineal', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance,filterFilter) {
+mylsl.controller('uibModal_see_more_lineal', function (uploadService, $scope, $state, $http, $rootScope,$uibModal, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.loading = false;
 

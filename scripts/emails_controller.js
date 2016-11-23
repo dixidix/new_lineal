@@ -1,4 +1,4 @@
-mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http) {
+mylsl.controller('emails_controller', function ($rootScope,filterFilter,$uibModal, $cookies, $scope, $http) {
   'use strict';
   $('#cpanel_emails').hide();  
   $('.sending').hide();
@@ -59,9 +59,9 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
     }, true);
   });
   $scope.add_email = function(){
-    $modal.open({
-      templateUrl: './partials/modal_add_mail.html',
-      controller: 'modal_add_email',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_mail.html',
+      controller: 'uibModal_add_email',
       scope: $scope
     })
     .result.then(function () {
@@ -70,9 +70,9 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
   };
   $scope.modifyEmail = function (modifyEmail) {
     $rootScope.emailEdit = modifyEmail;
-    $modal.open({
-      templateUrl: './partials/modal_add_mail.html',
-      controller: 'modal_edit_email',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_mail.html',
+      controller: 'uibModal_edit_email',
       scope: $scope
     })
     .result.then(function () {
@@ -81,9 +81,9 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
   };
   $scope.deleteEmail = function (deleteEmail) {
     $rootScope.emailDelete = deleteEmail;
-    $modal.open({
-      templateUrl: './partials/modal_delete_email.html',
-      controller: 'modal_delete_email',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_email.html',
+      controller: 'uibModal_delete_email',
       scope: $scope
     })
     .result.then(function () {
@@ -92,7 +92,7 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
   };
 });
 
-mylsl.controller('modal_add_email', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_add_email', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
 
   $scope.actionTitle = "Agregar un Correo Electrónico";
   $scope.action = "Guardar";
@@ -111,7 +111,7 @@ mylsl.controller('modal_add_email', function ($state, $rootScope,$modal,$modalIn
   $scope.create_email = function () {
     $('.email').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.client_id = $('#select_client_email').val();
 
     $http({
@@ -140,7 +140,7 @@ mylsl.controller('modal_add_email', function ($state, $rootScope,$modal,$modalIn
   };
 });
 
-mylsl.controller('modal_edit_email', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_edit_email', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
 
   $scope.actionTitle = "Editar un Correo Electrónico";
@@ -164,7 +164,7 @@ mylsl.controller('modal_edit_email', function ($state, $rootScope,$modal,$modalI
   $scope.create_email = function () {
     $('.email').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.client_id = $('#select_client_email').val();
 
     $http({
@@ -194,7 +194,7 @@ mylsl.controller('modal_edit_email', function ($state, $rootScope,$modal,$modalI
   };
 });
 
-mylsl.controller('modal_delete_email',  function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_delete_email',  function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
 
   'use strict';
 

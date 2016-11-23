@@ -1,0 +1,24 @@
+<div class="popover_download" ng-controller="popover_controller">
+	<ul>
+		<li ng-if="downloadLinks.file_fcl">
+			<a target="_self" href="{{downloadLinks.file_fcl}}" download="{{downloadLinks.file_name_fcl}}">
+				<i class="glyphicon glyphicon-cloud-download"></i> FCL
+			</a>
+		</li>
+		<li ng-if="downloadLinks.file_pdf">
+			<a target="_self" href="{{downloadLinks.file_pdf}}" download="{{downloadLinks.file_name_pdf}}">
+				<i class="glyphicon glyphicon-cloud-download"></i> PDF
+			</a>
+		</li>
+		<li ng-if="downloadLinks.file_reqfound">
+			<a target="_self" href="{{downloadLinks.file_reqfound}}" download="{{downloadLinks.file_name_reqfound}}">
+				<i class="glyphicon glyphicon-cloud-download"></i> Req. Fondos
+			</a>
+		</li>
+		<li ng-if="downloadLinks.file_simi">
+			<a target="_self" href="{{downloadLinks.file_simi}}" download="{{downloadLinks.file_simi}}">
+				<i class="glyphicon glyphicon-cloud-download"></i> SIMI
+			</a>
+		</li>
+	</ul>
+</div>

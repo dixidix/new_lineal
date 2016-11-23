@@ -32,26 +32,26 @@
       </thead>
       <tbody>
        <tr ng-repeat="video in  filtered = operations_videos | filter : paginate | filter : videos_date | filter : videos_name | filter : videos_desc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
-          <td>{{ video.uploadDate | date:'dd-MM-yyyy HH:mm:ss'}}</td>
-          <td>{{ video.filename}}</td>
-          <td>{{ video.filetitle}}</td>
-          <td>{{ video.fileDesc }}</td>
-          <td><a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyVideo(video)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteVideo(video)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
-        </tr>
-      </tbody>
-    </table>
-    <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
-  </div>
+        <td>{{ video.uploadDate | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+        <td>{{ video.filename}}</td>
+        <td>{{ video.filetitle}}</td>
+        <td>{{ video.fileDesc }}</td>
+        <td><a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyVideo(video)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteVideo(video)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+  <ul uib-pagination boundary-links="true" page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente"  first-text="Primero" last-text="&Uacute;ltimo"></ul>
+</div>
 </div>
 <div class="progress">
   <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
   aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
   Cargando...
-  </div>
+</div>
 </div>
 <div class="progress sending">
   <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
   aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
   Enviando...
-  </div>
+</div>
 </div>

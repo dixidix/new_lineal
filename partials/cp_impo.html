@@ -21,14 +21,14 @@
       <button class="btn  add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Importación</button>
     </div>
   </div>
-<div class="operation_state setWhite">
-      <div class="col-xs-6 pull-right">
-        <div class="icon_inprogress"></div>
-        <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
-        <div class="icon_finished"></div>
-        <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span>
-      </div>
+  <div class="operation_state setWhite">
+    <div class="col-xs-6 pull-right">
+      <div class="icon_inprogress"></div>
+      <span class="state_description state_filter" ng-click="filterInProgress()" tooltip="Filtrar por En Proceso" tooltip-trigger tooltip-placement="bottom">En proceso</span>
+      <div class="icon_finished"></div>
+      <span class="state_description state_filter" ng-click="filterFinished()" tooltip="Filtrar por Terminados" tooltip-trigger tooltip-placement="bottom">Finalizado</span><span class="state_description">Total finalizadas: {{operations_finished}}</span><span>Total en proceso: {{operations_in_progress}}</span>
     </div>
+  </div>
   <div class="table-responsive cp_impo_tb-responsive">    
     <table class="table cp_impo_tb table-striped table-curved table-condensed table-hover">
       <thead>
@@ -77,7 +77,7 @@
       </tbody>
     </table>
   </div>
-      <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
+  <ul uib-pagination boundary-links="true" page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente"  first-text="Primero" last-text="&Uacute;ltimo"></ul>
 </div>
 <div class="progress">
   <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"

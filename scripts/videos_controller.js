@@ -1,4 +1,4 @@
-mylsl.controller('videos_controller', function ($rootScope, $cookies, $scope, $http, filterFilter, $modal) {
+mylsl.controller('videos_controller', function ($rootScope, $cookies, $scope, $http, filterFilter, $uibModal) {
 
   'use strict';
     $('.videos').hide(); 
@@ -96,9 +96,9 @@ mylsl.controller('videos_controller', function ($rootScope, $cookies, $scope, $h
 
     $rootScope.watchVideos = video;
 
-    $modal.open({
+    $uibModal.open({
 
-      templateUrl: './partials/modal_watch_video.html',
+      templateUrl: './partials/uibModal_watch_video.html',
 
       controller: 'watchVideo_ctrl',
 
@@ -164,7 +164,7 @@ mylsl.controller('videos_controller', function ($rootScope, $cookies, $scope, $h
  });
 
 });
-mylsl.controller('watchVideo_ctrl', function ($rootScope, $cookies, $scope, $http, filterFilter, $modal) {
+mylsl.controller('watchVideo_ctrl', function ($rootScope, $cookies, $scope, $http, filterFilter, $uibModal) {
   'use strict';
 
   $scope.operations_videos = {

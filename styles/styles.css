@@ -635,6 +635,11 @@ table.table.cp_expo_tb{
   width:200%;
   overflow-x: scroll;
 }
+table.table.expo_tb{
+  max-width: initial;
+  width:200%;
+  overflow-x: scroll;
+}
 table.table.cp_impo_tb tbody td:last-child{
   padding-bottom: 0px;
 }
@@ -717,5 +722,18 @@ td.actions{
   color:green;
 }
 .condition_error {
+  color:red;
+}
+.popover_download ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+} 
+.popover_download ul > li > i {
+  color:orange;
+}
+.popover_download ul > li > a {
+  cursor: pointer;
+  text-decoration: none;
   color:red;
 }

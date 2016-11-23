@@ -1,4 +1,4 @@
-mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cookies, $scope, $http, $modal) {
+mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cookies, $scope, $http, $uibModal) {
   'use strict';
   $('#cpanel_client').hide();
   $('.sending').hide();
@@ -57,9 +57,9 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
     }, true);
   });
   $scope.add_client = function(){
-    $modal.open({
-      templateUrl: './partials/modal_add_client.html',
-      controller: 'modal_add_client',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_client.html',
+      controller: 'uibModal_add_client',
       scope: $scope
     })
     .result.then(function () {
@@ -67,9 +67,9 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
   };
   $scope.modifyClient = function (client, mail) {
     $rootScope.clientEdit = client;
-    $modal.open({
-      templateUrl: './partials/modal_add_client.html',
-      controller: 'modal_edit_client',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_add_client.html',
+      controller: 'uibModal_edit_client',
       scope: $scope
     })
     .result.then(function () {
@@ -77,9 +77,9 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
   };
   $scope.uploadFileClient = function (client) {
     $rootScope.clientupload = client;
-    $modal.open({
-      templateUrl: './partials/modal_upload_client.html',
-      controller: 'modal_upload_client',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_upload_client.html',
+      controller: 'uibModal_upload_client',
       scope: $scope
     })
     .result.then(function () {
@@ -87,16 +87,16 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
   };
   $scope.deleteClient = function (deleteClient) {
     $rootScope.clientDelete = deleteClient;
-    $modal.open({
-      templateUrl: './partials/modal_delete_client.html',
-      controller: 'modal_delete_client',
+    $uibModal.open({
+      templateUrl: './partials/uibModal_delete_client.html',
+      controller: 'uibModal_delete_client',
       scope: $scope
     })
     .result.then(function () {
     });
   };
 });
-mylsl.controller('modal_add_client', function (upload, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_add_client', function (upload, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.loading = false;
   $scope.editing_client = false;
@@ -130,7 +130,7 @@ mylsl.controller('modal_add_client', function (upload, $state, $rootScope,$modal
         $('#file_img_msg').addClass('validate_error');
         $('#file_img_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_clientname = function(){
@@ -186,7 +186,7 @@ $scope.create_client = function () {
   if($scope.client.sections.length > 0){
     $('.clients').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');   
+    $uibModalInstance.dismiss('cancel');   
     var client = $scope.client;
     upload.client(client).then(function (res) {
       $('.sending').hide();
@@ -202,7 +202,7 @@ $scope.create_client = function () {
   }
 };
 });
-mylsl.controller('modal_edit_client', function (upload, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_edit_client', function (upload, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.editing_client = true;
   $scope.actionTitle = "Editar un Cliente";
@@ -256,7 +256,7 @@ mylsl.controller('modal_edit_client', function (upload, $state, $rootScope,$moda
         $('#file_img_msg').addClass('validate_error');
         $('#file_img_msg').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.check_clientname = function(){
@@ -303,11 +303,11 @@ mylsl.controller('modal_edit_client', function (upload, $state, $rootScope,$moda
 }
 $scope.create_client = function () {
   // $scope.loading = true;
-  // $('.modal').css("overflow-y", "hidden");   
-  // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+  // $('.uibModal').css("overflow-y", "hidden");   
+  // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
   $('.clients').hide();
   $('.sending').fadeIn();
-  $modalInstance.dismiss('cancel');
+  $uibModalInstance.dismiss('cancel');
   var section = [];
   $('.multiselect option:selected').each(function() {
     section.push($(this).val());
@@ -325,7 +325,7 @@ $scope.create_client = function () {
   });
 };
 });
-mylsl.controller('modal_delete_client', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_delete_client', function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.client = {
     name: $rootScope.clientDelete.name_desc,
@@ -355,7 +355,7 @@ mylsl.controller('modal_delete_client', function ($state, $rootScope,$modal,$mod
       });
     };
   });
-mylsl.controller('modal_upload_client', function (upload,$filter, $state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('uibModal_upload_client', function (upload,$filter, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.actionTitle = "Subir Archivos";
   $scope.action = "Enviar";
@@ -382,16 +382,16 @@ mylsl.controller('modal_upload_client', function (upload,$filter, $state, $rootS
         $('#client_file').addClass('validate_error');
         $('#client_file').removeClass('validate_success');
       }
-      $('.modal-body').click();
+      $('.uibModal-body').click();
     });
   }
   $scope.uploadClient = function () {
     // $scope.loading = true;
-    // $('.modal').css("overflow-y", "hidden");   
-    // $('.modal').animate({ height: 200, scrollTop: 0}, 'fast');
+    // $('.uibModal').css("overflow-y", "hidden");   
+    // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
     $('.clients').hide();
     $('.sending').fadeIn();
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
     $scope.client_upload.client_id = $rootScope.clientupload.id;
     $scope.client_upload.fileTypeId = $('#select_fileType').val();
     $scope.client_upload.upload_date = $filter('date')(new Date(),'yyyy/MM/dd HH:mm:ss');
