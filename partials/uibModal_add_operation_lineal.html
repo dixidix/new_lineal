@@ -204,7 +204,7 @@
         <label>
           <div ng-if="operation_lineal.imp_pdf">
             <div class="btn search_btn" style="background:green;"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_pdf"/>Selecciona un archivo de PDF</div>
-            <a style="margin-left: 25px;" href="{{operation_lineal.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <a ng-if="!newFilePdf" style="margin-left: 25px;" href="{{operation_lineal.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
             <p id="file_pdf_msg">{{imp_pdf_title}}</p>
           </div>
           <div ng-if="!operation_lineal.imp_pdf">
@@ -221,7 +221,7 @@
         <label>
           <div ng-if="operation_lineal.imp_fcl">
            <div class="btn search_btn" style="background:green;"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_fcl"/>Selecciona un archivo de FCL</div>
-           <a style="margin-left: 25px;" href="{{operation_lineal.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+           <a ng-if="!newFileFcl" style="margin-left: 25px;" href="{{operation_lineal.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
            <p id="file_fcl_msg">{{imp_fcl_title}}</p>
          </div>
          <div ng-if="!operation_lineal.imp_fcl">
@@ -238,7 +238,7 @@
       <label>
         <div ng-if="operation_lineal.imp_simi">
           <div class="btn search_btn" style="background:green;"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_lineal.imp_simi"/>Selecciona un archivo de SIMI</div>
-          <a style="margin-left: 25px;" href="{{operation_lineal.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <a ng-if="!newFileSimi" style="margin-left: 25px;" href="{{operation_lineal.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
           <p id="file_simi_msg">{{imp_simi_title}}</p>
         </div>
         <div ng-if="!operation_lineal.imp_simi">

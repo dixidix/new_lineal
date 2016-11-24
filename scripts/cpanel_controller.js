@@ -333,7 +333,7 @@ mylsl.controller('uibModal_add_operation_import', function (uploadService, $scop
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -349,7 +349,7 @@ mylsl.controller('uibModal_add_operation_import', function (uploadService, $scop
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -365,7 +365,7 @@ mylsl.controller('uibModal_add_operation_import', function (uploadService, $scop
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -381,7 +381,7 @@ mylsl.controller('uibModal_add_operation_import', function (uploadService, $scop
         $('#file_imp_reqfound_msg').addClass('validate_error');
         $('#file_imp_reqfound_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_client = function(){
@@ -525,7 +525,7 @@ mylsl.controller('uibModal_add_operation_export', function (uploadService, $scop
         $('#file_exp_pdf_msg').addClass('validate_error');
         $('#file_exp_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="exp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -541,7 +541,7 @@ mylsl.controller('uibModal_add_operation_export', function (uploadService, $scop
         $('#file_exp_fcl_msg').addClass('validate_error');
         $('#file_exp_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="exp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -557,7 +557,7 @@ mylsl.controller('uibModal_add_operation_export', function (uploadService, $scop
         $('#file_exp_simi_msg').addClass('validate_error');
         $('#file_exp_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="exp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -573,7 +573,7 @@ mylsl.controller('uibModal_add_operation_export', function (uploadService, $scop
         $('#file_exp_reqfound_msg').addClass('validate_error');
         $('#file_exp_reqfound_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_client = function(){
@@ -679,7 +679,7 @@ mylsl.controller('uibModal_add_operation_bills', function (uploadService, $scope
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="bills_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -695,7 +695,7 @@ mylsl.controller('uibModal_add_operation_bills', function (uploadService, $scope
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="bills_simi"]').change(function(){
       var fileName = $(this).val();
@@ -711,7 +711,7 @@ mylsl.controller('uibModal_add_operation_bills', function (uploadService, $scope
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_lsl = function(){
@@ -820,7 +820,7 @@ mylsl.controller('uibModal_add_operation_videos', function (uploadService, $scop
         $('#file_video_msg').addClass('validate_error');
         $('#file_video_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.create_video = function () {
@@ -881,7 +881,7 @@ mylsl.controller('uibModal_add_operation_temp_import', function (uploadService, 
         $('#file_ctit_msg').addClass('validate_error');
         $('#file_ctit_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.create_temp_imp = function () {
@@ -1035,7 +1035,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1051,7 +1051,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1067,7 +1067,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     }); 
     $('input[name="imp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -1083,7 +1083,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#file_imp_reqfound_msg').addClass('validate_error');
         $('#file_imp_reqfound_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_client = function(){
@@ -1262,7 +1262,7 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#file_exp_pdf_msg').addClass('validate_error');
         $('#file_exp_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="exp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1278,7 +1278,7 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#file_exp_fcl_msg').addClass('validate_error');
         $('#file_exp_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="exp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1294,7 +1294,7 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#file_exp_simi_msg').addClass('validate_error');
         $('#file_exp_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });   
     $('input[name="exp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -1310,7 +1310,7 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#file_exp_reqfound_msg').addClass('validate_error');
         $('#file_exp_reqfound_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_client = function(){
@@ -1420,7 +1420,7 @@ mylsl.controller('uibModal_edit_operation_bills', function (uploadService, $scop
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="bills_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -1436,7 +1436,7 @@ mylsl.controller('uibModal_edit_operation_bills', function (uploadService, $scop
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="bills_simi"]').change(function(){
       var fileName = $(this).val();
@@ -1452,7 +1452,7 @@ mylsl.controller('uibModal_edit_operation_bills', function (uploadService, $scop
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.check_ref_lsl = function(){
@@ -1535,7 +1535,7 @@ mylsl.controller('uibModal_edit_operation_temp_imp', function (uploadService, $s
         $('#file_ctit_msg').addClass('validate_error');
         $('#file_ctit_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.create_temp_imp = function () {
@@ -1589,7 +1589,7 @@ mylsl.controller('uibModal_edit_operation_videos', function (uploadService, $sco
         $('#file_video_msg').addClass('validate_error');
         $('#file_video_msg').removeClass('validate_success');
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
   $scope.create_video = function () {

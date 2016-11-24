@@ -160,10 +160,15 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
     forced_year: "",
     release_date_day: "",
     release_date_month: "",
-    release_date_year: ""
+    release_date_year: "",
+    imp_pdf: "",
+    imp_simi: "",
+    imp_fcl: ""
   };
-
-    $scope.get_filename = function () {
+  $scope.newFilePdf = true;
+  $scope.newFileFcl = true;
+  $scope.newFileSimi = true;
+  $scope.get_filename = function () {
     $('input[name="imp_pdf"]').change(function(){
       var fileName = $(this).val();
       fileName = fileName.replace(/^.*\\/, "");
@@ -172,13 +177,15 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
         $('#submit_imp').prop('disabled', false);
         $('#file_pdf_msg').removeClass('validate_error');
         $('#file_pdf_msg').addClass('validate_success');
+        $scope.newFilePdf = true;
       }else {
         $scope.imp_pdf_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
         $('#file_pdf_msg').addClass('validate_error');
         $('#file_pdf_msg').removeClass('validate_success');
+        $scope.operation_lineal.imp_pdf = "";
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_fcl"]').change(function(){
       var fileName = $(this).val();
@@ -188,13 +195,15 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
         $('#submit_imp').prop('disabled', false);
         $('#file_fcl_msg').removeClass('validate_error');
         $('#file_fcl_msg').addClass('validate_success');
+        $scope.newFileFcl = true;
       }else {
         $scope.imp_fcl_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
         $('#file_fcl_msg').addClass('validate_error');
         $('#file_fcl_msg').removeClass('validate_success');
+        $scope.operation_lineal.imp_fcl = "";
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
     $('input[name="imp_simi"]').change(function(){
       var fileName = $(this).val();
@@ -204,13 +213,15 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
         $('#submit_imp').prop('disabled', false);
         $('#file_simi_msg').removeClass('validate_error');
         $('#file_simi_msg').addClass('validate_success');
+        $scope.newFileSimi = true;
       }else {
         $scope.imp_simi_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
         $('#file_simi_msg').addClass('validate_error');
         $('#file_simi_msg').removeClass('validate_success');
+        $scope.operation_lineal.imp_simi = "";
       }
-      $('.uibModal-body').click();
+      $scope.$apply();
     });
   }
 
@@ -370,9 +381,71 @@ mylsl.controller('uibModal_edit_operation_lineal', function (uploadService2, $st
     forced_year: parseInt(forced_date[2]),
     release_date_day: parseInt(release_date[0]),
     release_date_month:parseInt(release_date[1]),
-    release_date_year: parseInt(release_date[2])
+    release_date_year: parseInt(release_date[2]),
+    imp_pdf: $rootScope.linealEdit.file_pdf,
+    imp_name_pdf: $rootScope.linealEdit.file_name_pdf,
+    imp_fcl:$rootScope.linealEdit.file_fcl,
+    imp_name_fcl:$rootScope.linealEdit.file_name_fcl,
+    imp_simi: $rootScope.linealEdit.file_simi,
+    imp_name_simi: $rootScope.linealEdit.file_name_simi
   };
+  $scope.newFilePdf = false;
+  $scope.newFileFcl = false;
+  $scope.newFileSimi = false;
 
+  $scope.get_filename = function () {
+    $('input[name="imp_pdf"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_pdf_title = "Archivo: " + fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_pdf_msg').removeClass('validate_error');
+        $('#file_pdf_msg').addClass('validate_success');
+        $scope.newFilePdf = true;
+      }else {
+        $scope.imp_pdf_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_pdf_msg').addClass('validate_error');
+        $('#file_pdf_msg').removeClass('validate_success');
+      }
+      $scope.$apply();
+    });
+    $('input[name="imp_fcl"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_fcl_title = "Archivo: " +fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_fcl_msg').removeClass('validate_error');
+        $('#file_fcl_msg').addClass('validate_success');
+        $scope.newFileFcl = true;
+      }else {
+        $scope.imp_fcl_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_fcl_msg').addClass('validate_error');
+        $('#file_fcl_msg').removeClass('validate_success');
+      }
+      $scope.$apply();
+    });
+    $('input[name="imp_simi"]').change(function(){
+      var fileName = $(this).val();
+      fileName = fileName.replace(/^.*\\/, "");
+      if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
+        $scope.imp_simi_title = "Archivo: " +fileName;
+        $('#submit_imp').prop('disabled', false);
+        $('#file_simi_msg').removeClass('validate_error');
+        $('#file_simi_msg').addClass('validate_success');
+        $scope.newFileSimi = true;
+      }else {
+        $scope.imp_simi_title = "Debe seleccionar un archivo PDF";
+        $('#submit_imp').prop('disabled', true);
+        $('#file_simi_msg').addClass('validate_error');
+        $('#file_simi_msg').removeClass('validate_success');
+      }
+      $scope.$apply();
+    });
+  }
 
   $scope.create_lineal = function (){ 
     $('.cpanelLineal').hide();
@@ -484,6 +557,9 @@ mylsl.service('uploadService2', ["$http", "$q", function ($http, $q) {
     formData.append("condition", OpLineal.condition);
     formData.append("forced_date", OpLineal.forced_date);
     formData.append("release_date", OpLineal.release_date);
+    formData.append("file_imp_pdf", OpLineal.imp_pdf);
+    formData.append("file_imp_fcl", OpLineal.imp_fcl);
+    formData.append("file_imp_simi", OpLineal.imp_simi);
 
     return $http.post("./php/new_operation_lineal.php", formData, {
       transformRequest: angular.identity,
@@ -522,6 +598,9 @@ mylsl.service('uploadService2', ["$http", "$q", function ($http, $q) {
     formData.append("release_date", OpLineal.release_date);
     formData.append("op_type", OpLineal.op_type);
     formData.append("op_state", OpLineal.op_state);
+    formData.append("file_imp_pdf", OpLineal.imp_pdf);
+    formData.append("file_imp_fcl", OpLineal.imp_fcl);
+    formData.append("file_imp_simi", OpLineal.imp_simi);
 
     return $http.post('./php/edit_operation_lineal.php', formData, {
       transformRequest: angular.identity,
