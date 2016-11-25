@@ -225,7 +225,7 @@
       <div class="form-group">
         <span>Factura LSL: </span>
         <input name="lsl_bill" id="imp_ref_lsl" type="text" class="form-control" ng-model="operation_import.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
-<!--         <p class="validate_error">{{validate_ref_lsl}}</p> -->
+        <!--         <p class="validate_error">{{validate_ref_lsl}}</p> -->
       </div>
     </div>
   </div>
@@ -235,7 +235,8 @@
         <label>
           <div ng-if="operation_import.imp_pdf">
             <div class="btn search_btn" style="background:green;"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_pdf"/>Selecciona un archivo de PDF</div>
-            <a style="margin-left: 25px;" href="{{operation_import.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <a ng-if="!newFilePdf" style="margin-left: 25px;" href="{{operation_import.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <a ng-if="!newFilePdf" style="margin-left: 25px; color:red;" ng-click="deleteFile(operation_import.file_id_pdf, 'pdf')"><i class="glyphicon glyphicon-remove"></i>Eliminar</a>
             <p id="file_pdf_msg">{{imp_pdf_title}}</p>
           </div>
           <div ng-if="!operation_import.imp_pdf">
@@ -252,7 +253,8 @@
         <label>
           <div ng-if="operation_import.imp_fcl">
            <div class="btn search_btn" style="background:green;"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_fcl"/>Selecciona un archivo de FCL</div>
-           <a style="margin-left: 25px;" href="{{operation_import.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+           <a ng-if="!newFileFcl" style="margin-left: 25px;" href="{{operation_import.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+           <a ng-if="!newFileFcl" style="margin-left: 25px; color:red;" ng-click="deleteFile(operation_import.file_id_fcl, 'fcl')"><i class="glyphicon glyphicon-remove"></i>Eliminar</a>
            <p id="file_fcl_msg">{{imp_fcl_title}}</p>
          </div>
          <div ng-if="!operation_import.imp_fcl">
@@ -269,7 +271,8 @@
       <label>
         <div ng-if="operation_import.imp_simi">
           <div class="btn search_btn" style="background:green;"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_simi"/>Selecciona un archivo de SIMI</div>
-          <a style="margin-left: 25px;" href="{{operation_import.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <a ng-if="!newFileSimi" style="margin-left: 25px;" href="{{operation_import.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <a ng-if="!newFileSimi" style="margin-left: 25px; color:red;" ng-click="deleteFile(operation_import.file_id_simi, 'simi')"><i class="glyphicon glyphicon-remove"></i>Eliminar</a>
           <p id="file_simi_msg">{{imp_simi_title}}</p>
         </div>
         <div ng-if="!operation_import.imp_simi">
@@ -286,7 +289,8 @@
       <label>
         <div ng-if="operation_import.imp_reqfound">
           <div class="btn search_btn"  style="background:green;"><input type="file" name="imp_reqfound" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_reqfound"/>Selecciona un archivo de REQ. FONDOS</div>
-          <a style="margin-left: 25px;" href="{{operation_import.imp_reqfound}}" target="_blank" ><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <a ng-if="!newFileReqfound" style="margin-left: 25px;" href="{{operation_import.imp_reqfound}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+          <a ng-if="!newFileReqfound" style="margin-left: 25px; color:red;" ng-click="deleteFile(operation_import.file_id_reqfound, 'reqfound')"><i class="glyphicon glyphicon-remove"></i>Eliminar</a>
           <p id="file_imp_reqfound_msg">{{imp_reqfound_title}}</p>
         </div>
         <div ng-if="!operation_import.imp_reqfound">

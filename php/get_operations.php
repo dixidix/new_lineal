@@ -99,21 +99,33 @@ $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='"
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"file_name_pdf":"'   . $rss["document_name"].'",';
     $outp .= '"file_pdf":"'   . $rss["document_path"].'",';
+        if(!empty($rss["document_path"])){
+       $outp .= '"file_id_pdf":"'   . $rss["documentId"].'",';
+    }
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='". $client_id ."'and operationTypeId='". $optype ."'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='fcl' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"file_name_fcl":"'   . $rss["document_name"].'",';
     $outp .= '"file_fcl":"'   . $rss["document_path"].'",';
+       if(!empty($rss["document_path"])){
+    $outp .= '"file_id_fcl":"'   . $rss["documentId"].'",';
+}
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='". $client_id ."'and operationTypeId='". $optype ."'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='simi' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"file_name_simi":"'   . $rss["document_name"].'",';
     $outp .= '"file_simi":"'   . $rss["document_path"].'",';
+        if(!empty($rss["document_path"])){
+        $outp .= '"file_id_simi":"'   . $rss["documentId"].'",';
+    }
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='". $client_id ."'and operationTypeId='". $optype ."'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='reqfound' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"file_name_reqfound":"'   . $rss["document_name"].'",';
     $outp .= '"file_reqfound":"'   . $rss["document_path"].'",';
+        if(!empty($rss["document_path"])){
+        $outp .= '"file_id_reqfound":"'   . $rss["documentId"].'",';
+    }
 }
 
 if(!empty($rs["forced_date"])){

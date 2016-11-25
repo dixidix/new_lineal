@@ -300,6 +300,10 @@ mylsl.controller('uibModal_add_operation_import', function (uploadService, $scop
     lsl_bill: "",
     select_owner: ""
   };
+  $scope.newFilePdf = true;
+  $scope.newFileFcl = true;
+  $scope.newFileSimi = true;
+  $scope.newFileReqfound = true;
   $scope.generateId = function(){
     var timestamp = (new Date).getTime();
     var refCliente = "";
@@ -492,6 +496,10 @@ mylsl.controller('uibModal_add_operation_export', function (uploadService, $scop
     fob_rights: "",
     cut_off: ""
   };
+  $scope.newFilePdf = true;
+  $scope.newFileFcl = true;
+  $scope.newFileSimi = true;
+  $scope.newFileReqfound = true;
   $scope.generateId = function(){
     var timestamp = (new Date).getTime();
     var refCliente = "";
@@ -922,7 +930,7 @@ mylsl.controller('uibModal_see_more_import', function (uploadService, $scope, $s
   };
   $scope.client_hide = false;
 });
-mylsl.controller('uibModal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_import', function ($timeout, uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.loading = false;
   $scope.isEditing = true;
@@ -1011,8 +1019,18 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
     imp_name_simi: $rootScope.importEdit.file_name_simi,
     imp_reqfound:$rootScope.importEdit.file_reqfound,
     imp_name_reqfound:$rootScope.importEdit.file_name_reqfound,
-    lsl_bill: $rootScope.importEdit.lsl_bill
+    lsl_bill: $rootScope.importEdit.lsl_bill,
+    file_id_pdf:$rootScope.importEdit.file_id_pdf,
+    file_id_fcl:$rootScope.importEdit.file_id_fcl,
+    file_id_simi:$rootScope.importEdit.file_id_simi,
+    file_id_reqfound:$rootScope.importEdit.file_id_reqfound
+
   };
+  $scope.newFilePdf = false;
+  $scope.newFileFcl = false;
+  $scope.newFileSimi = false;
+  $scope.newFileReqfound = false;
+
   var lsl_bill = $scope.operation_import.lsl_bill;
   var ref_client = $scope.operation_import.ref_client;
   $scope.select_owner = $rootScope.importEdit.ownerId;
@@ -1029,6 +1047,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#submit_imp').prop('disabled', false);
         $('#file_pdf_msg').removeClass('validate_error');
         $('#file_pdf_msg').addClass('validate_success');
+        $scope.newFilePdf = true;
       }else {
         $scope.imp_pdf_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
@@ -1045,6 +1064,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#submit_imp').prop('disabled', false);
         $('#file_fcl_msg').removeClass('validate_error');
         $('#file_fcl_msg').addClass('validate_success');
+        $scope.newFileFcl = true;
       }else {
         $scope.imp_fcl_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
@@ -1061,6 +1081,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#submit_imp').prop('disabled', false);
         $('#file_simi_msg').removeClass('validate_error');
         $('#file_simi_msg').addClass('validate_success');
+        $scope.newFileSimi = true;
       }else {
         $scope.imp_simi_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
@@ -1077,6 +1098,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
         $('#submit_imp').prop('disabled', false);
         $('#file_imp_reqfound_msg').removeClass('validate_error');
         $('#file_imp_reqfound_msg').addClass('validate_success');
+        $scope.newFileReqfound = true;
       }else {
         $scope.imp_reqfound_title = "Debe seleccionar un archivo PDF";
         $('#submit_imp').prop('disabled', true);
@@ -1128,7 +1150,48 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
       $('#submit_imp').prop('disabled', false);  
     }
   }
-  $scope.create_import = function () {
+
+  $scope.deleteFile = function (fileId, type) {
+
+    $http({
+      method: 'POST',
+      url: './php/delete_document.php',
+      data: {
+        fileId: fileId
+        }, //forms user object
+        headers: {'Content-Type': undefined}
+      }).success(function () {
+
+        if(type === 'pdf'){
+          $scope.operation_import.imp_pdf = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+          
+        }
+        if (type === 'fcl'){
+          $scope.operation_import.imp_fcl = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        if (type === 'simi'){
+          $scope.operation_import.imp_simi = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        if (type === 'reqfound'){
+          $scope.operation_import.imp_reqfound = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+      });
+
+    }
+
+    $scope.create_import = function () {
     // $scope.loading = true;
     // $('.uibModal').css("overflow-y", "hidden");   
     // $('.uibModal').animate({ height: 200, scrollTop: 0}, 'fast');
@@ -1165,7 +1228,7 @@ mylsl.controller('uibModal_edit_operation_import', function (uploadService, $sco
     });
   };
 });
-mylsl.controller('uibModal_edit_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
+mylsl.controller('uibModal_edit_operation_export', function ($timeout, uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Exportación";
   $scope.action = "Editar";
@@ -1241,12 +1304,22 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
     fob_rights: $rootScope.exportEdit.fob_rights,
     cut_off_day: parseInt(cut_off[0]),
     cut_off_month: parseInt(cut_off[1]),
-    cut_off_year: parseInt(cut_off[2])
+    cut_off_year: parseInt(cut_off[2]),
+    file_id_pdf:$rootScope.exportEdit.file_id_pdf,
+    file_id_fcl:$rootScope.exportEdit.file_id_fcl,
+    file_id_simi:$rootScope.exportEdit.file_id_simi,
+    file_id_reqfound:$rootScope.exportEdit.imp_id_reqfound
+
   };
+  $scope.newFilePdf = false;
+  $scope.newFileFcl = false;
+  $scope.newFileSimi = false;
+  $scope.newFileReqfound = false;
   var lsl_bill = $scope.operation_export.lsl_bill;
   var ref_client = $scope.operation_export.ref_client;
   $scope.select_owner = $rootScope.exportEdit.ownerId;
   $scope.select_channel = $rootScope.exportEdit.channel;
+
   $scope.get_filename = function () {
     $('input[name="exp_pdf"]').change(function(){
       var fileName = $(this).val();
@@ -1256,30 +1329,38 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#submit_exp').prop('disabled', false);
         $('#file_exp_pdf_msg').removeClass('validate_error');
         $('#file_exp_pdf_msg').addClass('validate_success');
+        $scope.newFilePdf = true;
       }else {
         $scope.exp_pdf_title = "Debe seleccionar un archivo PDF";
         $('#submit_exp').prop('disabled', true);
         $('#file_exp_pdf_msg').addClass('validate_error');
         $('#file_exp_pdf_msg').removeClass('validate_success');
       }
-      $scope.$apply();
+      $timeout(function(){
+        $scope.$apply();
+      });
     });
+
     $('input[name="exp_fcl"]').change(function(){
       var fileName = $(this).val();
       fileName = fileName.replace(/^.*\\/, "");
       if(fileName.split('.').pop() == 'pdf' || fileName.split('.').pop() == 'PDF'){
         $scope.exp_fcl_title = "Archivo: " +fileName;
         $('#submit_exp').prop('disabled', false);
-        $('#file_exp_fcl_msg').removeClass('validate_error');
-        $('#file_exp_fcl_msg').addClass('validate_success');
+        $('#file_fcl_msg').removeClass('validate_error');
+        $('#file_fcl_msg').addClass('validate_success');
+        $scope.newFileFcl = true;
       }else {
         $scope.exp_fcl_title = "Debe seleccionar un archivo PDF";
         $('#submit_exp').prop('disabled', true);
-        $('#file_exp_fcl_msg').addClass('validate_error');
-        $('#file_exp_fcl_msg').removeClass('validate_success');
+        $('#file_fcl_msg').addClass('validate_error');
+        $('#file_fcl_msg').removeClass('validate_success');
       }
-      $scope.$apply();
+      $timeout(function(){
+        $scope.$apply();
+      });
     });
+
     $('input[name="exp_simi"]').change(function(){
       var fileName = $(this).val();
       fileName = fileName.replace(/^.*\\/, "");
@@ -1288,13 +1369,17 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#submit_exp').prop('disabled', false);
         $('#file_exp_simi_msg').removeClass('validate_error');
         $('#file_exp_simi_msg').addClass('validate_success');
+        $scope.newFileSimi = true;
       }else {
         $scope.exp_simi_title = "Debe seleccionar un archivo PDF";
         $('#submit_exp').prop('disabled', true);
         $('#file_exp_simi_msg').addClass('validate_error');
         $('#file_exp_simi_msg').removeClass('validate_success');
+
       }
-      $scope.$apply();
+      $timeout(function(){
+        $scope.$apply();
+      });
     });   
     $('input[name="exp_reqfound"]').change(function(){
       var fileName = $(this).val();
@@ -1304,13 +1389,16 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
         $('#submit_exp').prop('disabled', false);
         $('#file_exp_reqfound_msg').removeClass('validate_error');
         $('#file_exp_reqfound_msg').addClass('validate_success');
+        $scope.newFileReqfound = true;
       }else {
         $scope.exp_reqfound_title = "Debe seleccionar un archivo PDF";
         $('#submit_exp').prop('disabled', true);
         $('#file_exp_reqfound_msg').addClass('validate_error');
         $('#file_exp_reqfound_msg').removeClass('validate_success');
       }
-      $scope.$apply();
+      $timeout(function(){
+        $scope.$apply();
+      });
     });
   }
   $scope.check_ref_client = function(){
@@ -1355,33 +1443,72 @@ mylsl.controller('uibModal_edit_operation_export', function (uploadService, $sco
       $('#submit_exp').prop('disabled', false);  
     }
   }
-  $scope.create_export = function () {
-    $('.export').hide();
-    $('.sending').fadeIn();
-    $uibModalInstance.dismiss('cancel');
-    $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
-    $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
-    $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
-    $scope.operation_export.deposit_enter = $scope.operation_export.deposit_enter_year + "-" + $scope.operation_export.deposit_enter_month + "-" + $scope.operation_export.deposit_enter_day;
-    $scope.operation_export.cut_off = $scope.operation_export.cut_off_year + "-" + $scope.operation_export.cut_off_month + "-" + $scope.operation_export.cut_off_day;
-    $scope.operation_export.client_id = $rootScope.cp_client;
-    $scope.operation_export.op_type = $rootScope.cp_operation;
-    $scope.operation_export.op_state = $('#select_op_state').val();
-    $scope.operation_export.select_owner = $('#select_owner').val();
-    $scope.operation_export.channel = $('#select_channel').val() || "";
-    $scope.operation_export.timeStamp = (new Date).getTime();
-    var OpExport = $scope.operation_export;
-    uploadService.editExport(OpExport).then(function (res) {
-      $('.sending').hide();
-      $('.export').fadeIn();
-      $state.go($state.current, {}, {
-        reload: true
+  $scope.deleteFile = function (fileId, type) {
+
+    $http({
+      method: 'POST',
+      url: './php/delete_document.php',
+      data: {
+        fileId: fileId
+        }, //forms user object
+        headers: {'Content-Type': undefined}
+      }).success(function () {
+
+        if(type === 'pdf'){
+          $scope.operation_export.exp_pdf = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+          
+        }
+        if (type === 'fcl'){
+          $scope.operation_export.exp_fcl = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        if (type === 'simi'){
+          $scope.operation_export.exp_simi = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        if (type === 'reqfound'){
+          $scope.operation_export.exp_reqfound = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        } 
       });
-    }).finally(function(){
-      $scope.loading = false;
-    });
-  };
-});
+
+    }
+    $scope.create_export = function () {
+      $('.export').hide();
+      $('.sending').fadeIn();
+      $uibModalInstance.dismiss('cancel');
+      $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
+      $scope.operation_export.request_funding = $scope.operation_export.request_funding_year + "-" + $scope.operation_export.request_funding_month + "-" + $scope.operation_export.request_funding_day;
+      $scope.operation_export.recived_funds = $scope.operation_export.recived_funds_year + "-" + $scope.operation_export.recived_funds_month + "-" + $scope.operation_export.recived_funds_day;
+      $scope.operation_export.deposit_enter = $scope.operation_export.deposit_enter_year + "-" + $scope.operation_export.deposit_enter_month + "-" + $scope.operation_export.deposit_enter_day;
+      $scope.operation_export.cut_off = $scope.operation_export.cut_off_year + "-" + $scope.operation_export.cut_off_month + "-" + $scope.operation_export.cut_off_day;
+      $scope.operation_export.client_id = $rootScope.cp_client;
+      $scope.operation_export.op_type = $rootScope.cp_operation;
+      $scope.operation_export.op_state = $('#select_op_state').val();
+      $scope.operation_export.select_owner = $('#select_owner').val();
+      $scope.operation_export.channel = $('#select_channel').val() || "";
+      $scope.operation_export.timeStamp = (new Date).getTime();
+      var OpExport = $scope.operation_export;
+      uploadService.editExport(OpExport).then(function (res) {
+        $('.sending').hide();
+        $('.export').fadeIn();
+        $state.go($state.current, {}, {
+          reload: true
+        });
+      }).finally(function(){
+        $scope.loading = false;
+      });
+    };
+  });
 mylsl.controller('uibModal_edit_operation_bills', function (uploadService, $scope, $state, $http, $rootScope, $uibModalInstance,filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Factura";

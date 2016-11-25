@@ -163,7 +163,10 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
     release_date_year: "",
     imp_pdf: "",
     imp_simi: "",
-    imp_fcl: ""
+    imp_fcl: "",
+    file_id_pdf:"",
+    file_id_fcl:"",
+    file_id_simi:""
   };
   $scope.newFilePdf = true;
   $scope.newFileFcl = true;
@@ -281,7 +284,7 @@ mylsl.controller('uibModal_add_operation_lineal', function (uploadService2, $sta
   };
 });
 
-mylsl.controller('uibModal_edit_operation_lineal', function (uploadService2, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http, filterFilter) {
+mylsl.controller('uibModal_edit_operation_lineal', function ($timeout, uploadService2, $state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http, filterFilter) {
   'use strict';
   $scope.actionTitle = "Editar una Operación de Lineal";
   $scope.action = "Editar";
@@ -387,7 +390,10 @@ mylsl.controller('uibModal_edit_operation_lineal', function (uploadService2, $st
     imp_fcl:$rootScope.linealEdit.file_fcl,
     imp_name_fcl:$rootScope.linealEdit.file_name_fcl,
     imp_simi: $rootScope.linealEdit.file_simi,
-    imp_name_simi: $rootScope.linealEdit.file_name_simi
+    imp_name_simi: $rootScope.linealEdit.file_name_simi,
+    file_id_pdf:$rootScope.linealEdit.file_id_pdf,
+    file_id_fcl:$rootScope.linealEdit.file_id_fcl,
+    file_id_simi:$rootScope.linealEdit.file_id_simi
   };
   $scope.newFilePdf = false;
   $scope.newFileFcl = false;
@@ -447,37 +453,71 @@ mylsl.controller('uibModal_edit_operation_lineal', function (uploadService2, $st
     });
   }
 
-  $scope.create_lineal = function (){ 
-    $('.cpanelLineal').hide();
-    $('.sending').fadeIn();
-    $uibModalInstance.dismiss('cancel');
-    $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
-    $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
-    $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
-    $scope.operation_lineal.release_date = $scope.operation_lineal.release_date_year + "-" + $scope.operation_lineal.release_date_month + "-" + $scope.operation_lineal.release_date_day;
-    $scope.operation_lineal.expired_simi = $scope.operation_lineal.expired_simi_year + "-" + $scope.operation_lineal.expired_simi_month + "-" + $scope.operation_lineal.expired_simi_day;
-    $scope.operation_lineal.forced_date = $scope.operation_lineal.forced_year + "-" + $scope.operation_lineal.forced_month + "-" + $scope.operation_lineal.forced_day;
+  $scope.deleteFile = function (fileId, type) {
 
-    $scope.operation_lineal.client_id = $('#select_client').val();
-    $scope.operation_lineal.owner = $('#select_owner').val();
-    $scope.operation_lineal.condition = $('#select_condition').val();
-    $scope.operation_lineal.fob_simi_currency = $('#select_fob_simi').val() || "";
-    $scope.operation_lineal.fob_despacho_currency = $('#select_fob_despacho').val() || "";
-    $scope.operation_lineal.op_state = $('#select_op_state').val();
+    $http({
+      method: 'POST',
+      url: './php/delete_document.php',
+      data: {
+        fileId: fileId
+        }, //forms user object
+        headers: {'Content-Type': undefined}
+      }).success(function () {
 
-    $scope.operation_lineal.timeStamp = (new Date).getTime();
-    var OpLineal = $scope.operation_lineal;
-    uploadService2.editLineal(OpLineal).then(function (res) {
-      $('.sending').hide();
-      $('.import').fadeIn();
-      $state.go($state.current, {}, {
-        reload: true
+        if(type === 'pdf'){
+          $scope.operation_lineal.imp_pdf = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+          
+        }
+        if (type === 'fcl'){
+          $scope.operation_lineal.imp_fcl = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        if (type === 'simi'){
+          $scope.operation_lineal.imp_simi = "";
+          $timeout(function(){
+            $scope.$apply();
+          });
+        }
+        
       });
-    }).finally(function(){
-      $scope.loading = false;
-    });
-  };
-});
+
+    }
+    $scope.create_lineal = function (){ 
+      $('.cpanelLineal').hide();
+      $('.sending').fadeIn();
+      $uibModalInstance.dismiss('cancel');
+      $scope.operation_lineal.shipment_origin = $scope.operation_lineal.shipment_origin_year + "-" + $scope.operation_lineal.shipment_origin_month + "-" + $scope.operation_lineal.shipment_origin_day;
+      $scope.operation_lineal.estimated_arrival = $scope.operation_lineal.estimated_arrival_year + "-" + $scope.operation_lineal.estimated_arrival_month + "-" + $scope.operation_lineal.estimated_arrival_day;
+      $scope.operation_lineal.arrival_date = $scope.operation_lineal.arrival_date_year + "-" + $scope.operation_lineal.arrival_date_month + "-" + $scope.operation_lineal.arrival_date_day;
+      $scope.operation_lineal.release_date = $scope.operation_lineal.release_date_year + "-" + $scope.operation_lineal.release_date_month + "-" + $scope.operation_lineal.release_date_day;
+      $scope.operation_lineal.expired_simi = $scope.operation_lineal.expired_simi_year + "-" + $scope.operation_lineal.expired_simi_month + "-" + $scope.operation_lineal.expired_simi_day;
+      $scope.operation_lineal.forced_date = $scope.operation_lineal.forced_year + "-" + $scope.operation_lineal.forced_month + "-" + $scope.operation_lineal.forced_day;
+
+      $scope.operation_lineal.client_id = $('#select_client').val();
+      $scope.operation_lineal.owner = $('#select_owner').val();
+      $scope.operation_lineal.condition = $('#select_condition').val();
+      $scope.operation_lineal.fob_simi_currency = $('#select_fob_simi').val() || "";
+      $scope.operation_lineal.fob_despacho_currency = $('#select_fob_despacho').val() || "";
+      $scope.operation_lineal.op_state = $('#select_op_state').val();
+
+      $scope.operation_lineal.timeStamp = (new Date).getTime();
+      var OpLineal = $scope.operation_lineal;
+      uploadService2.editLineal(OpLineal).then(function (res) {
+        $('.sending').hide();
+        $('.import').fadeIn();
+        $state.go($state.current, {}, {
+          reload: true
+        });
+      }).finally(function(){
+        $scope.loading = false;
+      });
+    };
+  });
 mylsl.controller('uibModal_delete_operation_lineal',  function ($state, $rootScope,$uibModal,$uibModalInstance, $cookies, $scope, $http) {
   'use strict';
   $scope.operation_lineal = {
@@ -560,6 +600,7 @@ mylsl.service('uploadService2', ["$http", "$q", function ($http, $q) {
     formData.append("file_imp_pdf", OpLineal.imp_pdf);
     formData.append("file_imp_fcl", OpLineal.imp_fcl);
     formData.append("file_imp_simi", OpLineal.imp_simi);
+    formData.append("timeStamp", OpLineal.timeStamp);
 
     return $http.post("./php/new_operation_lineal.php", formData, {
       transformRequest: angular.identity,
@@ -601,6 +642,7 @@ mylsl.service('uploadService2', ["$http", "$q", function ($http, $q) {
     formData.append("file_imp_pdf", OpLineal.imp_pdf);
     formData.append("file_imp_fcl", OpLineal.imp_fcl);
     formData.append("file_imp_simi", OpLineal.imp_simi);
+    formData.append("timeStamp", OpLineal.timeStamp);
 
     return $http.post('./php/edit_operation_lineal.php', formData, {
       transformRequest: angular.identity,

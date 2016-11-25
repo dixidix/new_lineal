@@ -19,8 +19,8 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"transport":"'   . $rs["transport"].'",';
 
     if($shipment_origin != $compare_date){
-     $outp .= '"shipment_origin":"'   . $shipment_origin .'",';
- }else{
+       $outp .= '"shipment_origin":"'   . $shipment_origin .'",';
+   }else{
     $shipment_origin = "";
     $outp .= '"shipment_origin":"'   . $shipment_origin .'",';
 }
@@ -33,13 +33,13 @@ if($estimated_arrival != $compare_date){
 $outp .= '"custom_document":"'   . $rs["custom_document"].'",';
 $outp .= '"custom_document_djai":"'   . $rs["custom_document_djai"].'",';
 if($arrival_date != $compare_date){
- $outp .= '"arrival_date":"'   . $arrival_date .'",';
+   $outp .= '"arrival_date":"'   . $arrival_date .'",';
 }else{
     $arrival_date = "";
     $outp .= '"arrival_date":"'   . $arrival_date .'",';
 }
 if($release_date != $compare_date){
- $outp .= '"release_date":"'   . $release_date .'",';
+   $outp .= '"release_date":"'   . $release_date .'",';
 }else{
     $release_date = "";
     $outp .= '"release_date":"'   . $release_date .'",';
@@ -90,18 +90,30 @@ if(!empty($rs["owner"])){
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='pdf' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    
     $outp .= '"file_name_pdf":"'   . $rss["document_name"].'",';
     $outp .= '"file_pdf":"'   . $rss["document_path"].'",';
+    if(!empty($rss["document_path"])){
+       $outp .= '"file_id_pdf":"'   . $rss["documentId"].'",';
+    }
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27' and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='fcl' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
-    $outp .= '"file_name_fcl":"'   . $rss["document_name"].'",';
-    $outp .= '"file_fcl":"'   . $rss["document_path"].'",';
+
+   $outp .= '"file_name_fcl":"'   . $rss["document_name"].'",';
+   $outp .= '"file_fcl":"'   . $rss["document_path"].'",';
+   if(!empty($rss["document_path"])){
+    $outp .= '"file_id_fcl":"'   . $rss["documentId"].'",';
+}
 }
 $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='1'and operationTypeId='27'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='simi' and deleted=0");
 while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+
     $outp .= '"file_name_simi":"'   . $rss["document_name"].'",';
     $outp .= '"file_simi":"'   . $rss["document_path"].'",';
+    if(!empty($rss["document_path"])){
+        $outp .= '"file_id_simi":"'   . $rss["documentId"].'",';
+    }
 }
 if(!empty($rs["forced_date"])){
     $forced_date = date("d-m-Y", strtotime($rs["forced_date"]));
